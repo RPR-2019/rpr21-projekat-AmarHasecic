@@ -54,7 +54,7 @@
                         <Insets bottom="100.0" left="40.0" right="40.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Button defaultButton="true" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#loginAction" prefHeight="26.0" prefWidth="243.0" text="Log In" GridPane.rowIndex="3">
+                  <Button fx:id="login" defaultButton="true" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#loginAction" prefHeight="26.0" prefWidth="243.0" text="Log In" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets bottom="250.0" left="40.0" right="40.0" />
                      </GridPane.margin>
