@@ -49,11 +49,14 @@
                      <GridPane.margin>
                         <Insets left="40.0" right="40.0" top="30.0" />
                      </GridPane.margin></TextField>
-                  <TextField fx:id="fieldPassword" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="275.0" promptText="Password" GridPane.rowIndex="2">
+                  <PasswordField fx:id="fieldPassword" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="220.0" promptText="Password" GridPane.rowIndex="2">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                      <GridPane.margin>
-                        <Insets bottom="100.0" left="40.0" right="40.0" />
+                        <Insets bottom="140.0" left="40.0" right="40.0" top="30.0" />
                      </GridPane.margin>
-                  </TextField>
+                  </PasswordField>
                   <Button fx:id="login" defaultButton="true" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#loginAction" prefHeight="26.0" prefWidth="243.0" text="Log In" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets bottom="250.0" left="40.0" right="40.0" />
