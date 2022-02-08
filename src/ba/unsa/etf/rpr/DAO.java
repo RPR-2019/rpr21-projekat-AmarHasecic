@@ -2,16 +2,15 @@ package ba.unsa.etf.rpr;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DAO {
 
     private Connection conn;
     private static DAO instance;
+    private PreparedStatement allVotersQuery;
 
     public DAO() {
         String url = "jdbc:sqlite:baza.db";
@@ -20,6 +19,39 @@ public class DAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        try {
+            allVotersQuery = conn.prepareStatement("SELECT * FROM Voters");
+        }
+        catch (SQLException e) {
+            createDatabase();
+
+            try {
+                allVotersQuery = conn.prepareStatement("SELECT * FROM Voters");
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+
+    }
+
+    ArrayList<Voter> voters() {
+        ArrayList<Voter> output = new ArrayList<Voter>();
+        try {
+            ResultSet rs = allVotersQuery.executeQuery();
+
+            while (rs.next()) {
+                Voter voter = new Voter(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5),
+                        rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
+                output.add(voter);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return output;
     }
 
     public static DAO getInstance() {
@@ -44,7 +76,7 @@ public class DAO {
     private void createDatabase() {
         Scanner ulaz = null;
         try {
-            ulaz = new Scanner(new FileInputStream("baza.db.sql"));
+            ulaz = new Scanner(new FileInputStream("baza.sql"));
             String sqlUpit = "";
             while (ulaz.hasNext()) {
                 sqlUpit += ulaz.nextLine();
