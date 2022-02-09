@@ -1,5 +1,8 @@
 package ba.unsa.etf.rpr;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
@@ -53,6 +56,25 @@ public class DAO {
         }
         return output;
     }
+    ObservableList<Voter> votersObs() {
+        ObservableList<Voter> output = FXCollections.observableArrayList();
+        try {
+            ResultSet rs = allVotersQuery.executeQuery();
+
+            while (rs.next()) {
+                Voter voter = new Voter(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5),
+                        rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
+                output.add(voter);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
+    
 
     public static DAO getInstance() {
         if (instance == null) instance = new DAO();

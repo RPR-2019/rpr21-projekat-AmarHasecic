@@ -97,5 +97,10 @@ public class Voter {
         this.phone = phone;
     }
 
+    @Override
+    public String toString() {
+        return firstName +" "
+                + lastName +" (" + username +")";
 
+    }
 }
