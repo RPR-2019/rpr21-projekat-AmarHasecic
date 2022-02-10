@@ -3,7 +3,6 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <top>
@@ -34,17 +33,16 @@
                      <HBox.margin>
                         <Insets left="350.0" top="10.0" />
                      </HBox.margin>
-                     <font>
-                        <Font name="DejaVu Sans Bold" size="13.0" />
-                     </font>
                   </Label>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="16.0" text="CEC Members" textAlignment="CENTER">
                      <HBox.margin>
-                        <Insets left="650.0" top="10.0" />
+                        <Insets left="640.0" top="10.0" />
                      </HBox.margin>
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
+                  </Label>
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" text="Political Parties">
+                     <HBox.margin>
+                        <Insets left="210.0" top="10.0" />
+                     </HBox.margin>
                   </Label>
                </children>
             </HBox>
@@ -79,8 +77,26 @@
                         <Insets left="40.0" />
                      </HBox.margin>
                   </TableView>
+                  <TableView fx:id="fldParties" prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn fx:id="partyId" prefWidth="75.0" text="id" />
+                      <TableColumn fx:id="partyName" prefWidth="75.0" text="name" />
+                    </columns>
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                  </TableView>
                </children>
             </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TableView prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </children></HBox>
          </children>
       </VBox>
    </center>

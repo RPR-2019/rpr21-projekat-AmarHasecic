@@ -11,26 +11,13 @@ CREATE TABLE IF NOT EXISTS "Candidates" (
 	"first_name"	TEXT,
 	"last_name"	TEXT,
 	"numberOfVotes"	INTEGER,
-	PRIMARY KEY("id")
-);
-CREATE TABLE IF NOT EXISTS "Members" (
-	"idMember"	INTEGER,
-	"first_name"	TEXT,
-	"last_name"	TEXT,
-	"jmbg"	TEXT,
-	"date_of_birth"	TEXT,
-	"email"	TEXT,
-	"phone"	TEXT,
-	"numberOfVotes"	INTEGER,
-	PRIMARY KEY("idMember")
+	"political_party"	INTEGER,
+	PRIMARY KEY("id"),
+	FOREIGN KEY("political_party") REFERENCES "PoliticalParties"
 );
 CREATE TABLE IF NOT EXISTS "PoliticalParties" (
 	"id"	INTEGER,
 	"name"	TEXT,
-	"president"	INTEGER,
-	"member"	INTEGER,
-	FOREIGN KEY("president") REFERENCES "Members",
-	FOREIGN KEY("member") REFERENCES "Members",
 	PRIMARY KEY("id")
 );
 CREATE TABLE IF NOT EXISTS "Voters" (

@@ -13,7 +13,7 @@ public class DAO {
 
     private Connection conn;
     private static DAO instance;
-    private PreparedStatement allVotersQuery, allCecMembersQuerry;
+    private PreparedStatement allVotersQuery, allCecMembersQuerry, allPoliticalParties;
 
     public DAO() {
         String url = "jdbc:sqlite:baza.db";
@@ -25,6 +25,7 @@ public class DAO {
         try {
             allVotersQuery = conn.prepareStatement("SELECT * FROM Voters");
             allCecMembersQuerry = conn.prepareStatement("SELECT * FROM CECMembers");
+            allPoliticalParties = conn.prepareStatement("SELECT * FROM PoliticalParties");
         }
         catch (SQLException e) {
             createDatabase();
@@ -85,6 +86,24 @@ public class DAO {
             while (rs.next()) {
                 CECMember member = new CECMember(rs.getString(1), rs.getString(3),rs.getString(4),rs.getString(2));
                 output.add(member);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
+    public ObservableList<PoliticalParty> partiesObs() {
+
+        ObservableList<PoliticalParty> output = FXCollections.observableArrayList();
+        try {
+            ResultSet rs = allCecMembersQuerry.executeQuery();
+
+            while (rs.next()) {
+                PoliticalParty party = new PoliticalParty(rs.getInt(1), rs.getString(2));
+                output.add(party);
             }
 
 

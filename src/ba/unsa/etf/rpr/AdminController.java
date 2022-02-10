@@ -5,12 +5,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javax.swing.text.TabExpander;
+
 public class AdminController {
 
 
     public DAO model;
     public TableView tableViewVoters;
     public TableView tblCEC;
+    public TableView fldParties;
 
     public TableColumn password;
     public TableColumn firstName;
@@ -29,6 +32,9 @@ public class AdminController {
     public TableColumn lastNameCEC;
     public TableColumn usernameCEC;
 
+    public TableColumn partyName;
+    public TableColumn partyId;
+
 
 
     public AdminController() {
@@ -40,6 +46,7 @@ public class AdminController {
 
         tableViewVoters.setItems(model.votersObs());
         tblCEC.setItems(model.cecMembersObs());
+        fldParties.setItems(model.partiesObs());
 
 
         password.setCellValueFactory(new PropertyValueFactory("password"));
@@ -59,6 +66,10 @@ public class AdminController {
         firstNameCEC.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastNameCEC.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         usernameCEC.setCellValueFactory(new PropertyValueFactory<>("username"));
+
+        partyName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        partyId.setCellValueFactory(new PropertyValueFactory<>("id"));
+
 
 
 
