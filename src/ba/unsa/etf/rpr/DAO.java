@@ -13,7 +13,7 @@ public class DAO {
 
     private Connection conn;
     private static DAO instance;
-    private PreparedStatement allVotersQuery;
+    private PreparedStatement allVotersQuery, allCecMembersQuerry;
 
     public DAO() {
         String url = "jdbc:sqlite:baza.db";
@@ -24,12 +24,14 @@ public class DAO {
         }
         try {
             allVotersQuery = conn.prepareStatement("SELECT * FROM Voters");
+            allCecMembersQuerry = conn.prepareStatement("SELECT * FROM CECMembers");
         }
         catch (SQLException e) {
             createDatabase();
 
             try {
                 allVotersQuery = conn.prepareStatement("SELECT * FROM Voters");
+                allCecMembersQuerry = conn.prepareStatement("SELECT * FROM CECMembers");
 
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -64,7 +66,25 @@ public class DAO {
             while (rs.next()) {
                 Voter voter = new Voter(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5),
                         rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
+
                 output.add(voter);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
+    ObservableList<CECMember> cecMembersObs() {
+        ObservableList<CECMember> output = FXCollections.observableArrayList();
+        try {
+            ResultSet rs = allCecMembersQuerry.executeQuery();
+
+            while (rs.next()) {
+                CECMember member = new CECMember(rs.getString(1), rs.getString(3),rs.getString(4),rs.getString(2));
+                output.add(member);
             }
 
 
@@ -98,7 +118,7 @@ public class DAO {
     private void createDatabase() {
         Scanner ulaz = null;
         try {
-            ulaz = new Scanner(new FileInputStream("baza.sql"));
+            ulaz = new Scanner(new FileInputStream("baza.db.sql"));
             String sqlUpit = "";
             while (ulaz.hasNext()) {
                 sqlUpit += ulaz.nextLine();
@@ -126,8 +146,8 @@ public class DAO {
             e.printStackTrace();
         }
         try {
-            stmt.executeUpdate("DELETE FROM grad");
-            stmt.executeUpdate("DELETE FROM drzava");
+            stmt.executeUpdate("DELETE FROM voters");
+            stmt.executeUpdate("DELETE FROM cecmembers");
         } catch (SQLException e) {
             e.printStackTrace();
         }

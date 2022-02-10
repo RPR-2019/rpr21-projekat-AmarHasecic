@@ -38,6 +38,14 @@
                         <Font name="DejaVu Sans Bold" size="13.0" />
                      </font>
                   </Label>
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="16.0" text="CEC Members" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets left="650.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
             <HBox prefHeight="250.0" prefWidth="200.0">
@@ -54,10 +62,22 @@
                         <TableColumn fx:id="adress" prefWidth="75.0" text="Adress" />
                         <TableColumn fx:id="email" prefWidth="75.0" text="Email" />
                         <TableColumn fx:id="phone" prefWidth="75.0" text="Phone" />
+                        <TableColumn fx:id="badge" prefWidth="75.0" text="Badge" />
                     </columns>
                      <padding>
                         <Insets left="5.0" />
                      </padding>
+                  </TableView>
+                  <TableView fx:id="tblCEC" maxWidth="-Infinity" prefHeight="200.0" prefWidth="350.0">
+                    <columns>
+                        <TableColumn fx:id="code" prefWidth="75.0" text="Code" />
+                        <TableColumn fx:id="usernameCEC" prefWidth="75.0" text="Username" />
+                      <TableColumn fx:id="firstNameCEC" prefWidth="75.0" text="first_name" />
+                      <TableColumn fx:id="lastNameCEC" prefWidth="75.0" text="last_name" />
+                    </columns>
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
                   </TableView>
                </children>
             </HBox>

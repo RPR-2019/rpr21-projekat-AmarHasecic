@@ -2,7 +2,7 @@ package ba.unsa.etf.rpr;
 
 public class Voter {
 
-    private String password, username, firstName, lastName, jmbg, date, city, adress, email, phone;
+    private String password, username, firstName, lastName, jmbg, date, city, adress, email, phone, badge;
 
     public Voter(String password, String firstName, String lastName,String username, String jmbg, String date, String city, String adress, String email, String phone) {
         this.password = password;
@@ -15,6 +15,14 @@ public class Voter {
         this.email = email;
         this.phone = phone;
         this.username = username;
+    }
+
+    public String getBadge() {
+        return badge;
+    }
+
+    public void setBadge(String badge) {
+        this.badge = badge;
     }
 
     public String getUsername() {
