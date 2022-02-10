@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 CREATE TABLE IF NOT EXISTS "CECMembers" (
-	"code"	TEXT,
+	"code"	INTEGER,
 	"username"	TEXT,
 	"first_name"	TEXT,
 	"last_name"	TEXT,

@@ -13,7 +13,8 @@ public class DAO {
 
     private Connection conn;
     private static DAO instance;
-    private PreparedStatement allVotersQuery, allCecMembersQuerry, allPoliticalParties;
+    private PreparedStatement allVotersQuery, allCecMembersQuery, allPoliticalParties, allCandidatesQuery;
+            ;
 
     public DAO() {
         String url = "jdbc:sqlite:baza.db";
@@ -24,15 +25,17 @@ public class DAO {
         }
         try {
             allVotersQuery = conn.prepareStatement("SELECT * FROM Voters");
-            allCecMembersQuerry = conn.prepareStatement("SELECT * FROM CECMembers");
+            allCecMembersQuery = conn.prepareStatement("SELECT * FROM CECMembers");
             allPoliticalParties = conn.prepareStatement("SELECT * FROM PoliticalParties");
+            allCandidatesQuery = conn.prepareStatement("SELECT * FROM Candidates");
         }
         catch (SQLException e) {
             createDatabase();
 
             try {
                 allVotersQuery = conn.prepareStatement("SELECT * FROM Voters");
-                allCecMembersQuerry = conn.prepareStatement("SELECT * FROM CECMembers");
+                allCecMembersQuery = conn.prepareStatement("SELECT * FROM CECMembers");
+                allCandidatesQuery = conn.prepareStatement("SELECT * FROM Candidates");
 
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -81,10 +84,10 @@ public class DAO {
     ObservableList<CECMember> cecMembersObs() {
         ObservableList<CECMember> output = FXCollections.observableArrayList();
         try {
-            ResultSet rs = allCecMembersQuerry.executeQuery();
+            ResultSet rs = allCecMembersQuery.executeQuery();
 
             while (rs.next()) {
-                CECMember member = new CECMember(rs.getString(1), rs.getString(3),rs.getString(4),rs.getString(2));
+                CECMember member = new CECMember(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4));
                 output.add(member);
             }
 
@@ -99,7 +102,7 @@ public class DAO {
 
         ObservableList<PoliticalParty> output = FXCollections.observableArrayList();
         try {
-            ResultSet rs = allCecMembersQuerry.executeQuery();
+            ResultSet rs = allPoliticalParties.executeQuery();
 
             while (rs.next()) {
                 PoliticalParty party = new PoliticalParty(rs.getInt(1), rs.getString(2));
@@ -112,6 +115,23 @@ public class DAO {
         }
         return output;
     }
+    public ObservableList<Candidate> candidatesObs() {
+        ObservableList<Candidate> output = FXCollections.observableArrayList();
+        try {
+            ResultSet rs = allCandidatesQuery.executeQuery();
+
+            while (rs.next()) {
+                Candidate candidate = new Candidate(rs.getInt(1), rs.getInt(4),rs.getString(2), rs.getString(3));
+                output.add(candidate);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
 
     
 

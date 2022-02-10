@@ -8,9 +8,29 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-            <Menu mnemonicParsing="false" text="Tools">
+            <Menu mnemonicParsing="false" text="Options">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
+                  <Menu mnemonicParsing="false" text="Add">
+                     <items>
+                         <MenuItem mnemonicParsing="false" text="CEC Member" />
+                         <MenuItem mnemonicParsing="false" text="Candidate" />
+                         <MenuItem mnemonicParsing="false" text="Political Party" />
+                         <MenuItem mnemonicParsing="false" text="Voter" />
+                     </items></Menu>
+                  <Menu mnemonicParsing="false" text="Delete">
+                     <items>
+                         <MenuItem mnemonicParsing="false" text="CEC Member" />
+                         <MenuItem mnemonicParsing="false" text="Candidate" />
+                         <MenuItem mnemonicParsing="false" text="Political Party" />
+                         <MenuItem mnemonicParsing="false" text="Voter" />
+                     </items></Menu>
+                  <Menu mnemonicParsing="false" text="Edit">
+                     <items>
+                         <MenuItem mnemonicParsing="false" text="CEC Member" />
+                         <MenuItem mnemonicParsing="false" text="Candidate" />
+                         <MenuItem mnemonicParsing="false" text="Political Party" />
+                         <MenuItem mnemonicParsing="false" text="Voter" />
+                     </items></Menu>
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Help">
@@ -22,82 +42,100 @@
       </MenuBar>
    </top>
    <center>
-      <VBox BorderPane.alignment="CENTER">
+      <GridPane maxWidth="-Infinity" BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+
+         </rowConstraints>
          <children>
-            <HBox prefHeight="30.0" prefWidth="200.0">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <children>
-                  <Label alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" text="Voters" textAlignment="CENTER">
-                     <HBox.margin>
-                        <Insets left="350.0" top="10.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="16.0" text="CEC Members" textAlignment="CENTER">
-                     <HBox.margin>
-                        <Insets left="640.0" top="10.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" text="Political Parties">
-                     <HBox.margin>
-                        <Insets left="210.0" top="10.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox prefHeight="250.0" prefWidth="200.0">
-               <children>
-                  <TableView fx:id="tableViewVoters" prefHeight="200.0">
-                    <columns>
-                        <TableColumn fx:id="password" prefWidth="75.0" text="Password" />
-                        <TableColumn fx:id="firstName" prefWidth="75.0" text="First name" />
-                        <TableColumn fx:id="lastName" prefWidth="75.0" text="Last name" />
-                      <TableColumn fx:id="username" prefWidth="75.0" text="Username" />
-                      <TableColumn fx:id="jmbg" prefWidth="75.0" text="JMBG" />
-                        <TableColumn fx:id="birth" prefWidth="75.0" text="Date of birth" />
-                        <TableColumn fx:id="city" maxWidth="1000.0" minWidth="-1.0" prefWidth="100.0" text="City" />
-                        <TableColumn fx:id="adress" prefWidth="75.0" text="Adress" />
-                        <TableColumn fx:id="email" prefWidth="75.0" text="Email" />
-                        <TableColumn fx:id="phone" prefWidth="75.0" text="Phone" />
-                        <TableColumn fx:id="badge" prefWidth="75.0" text="Badge" />
-                    </columns>
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding>
-                  </TableView>
-                  <TableView fx:id="tblCEC" maxWidth="-Infinity" prefHeight="200.0" prefWidth="350.0">
-                    <columns>
-                        <TableColumn fx:id="code" prefWidth="75.0" text="Code" />
-                        <TableColumn fx:id="usernameCEC" prefWidth="75.0" text="Username" />
-                      <TableColumn fx:id="firstNameCEC" prefWidth="75.0" text="first_name" />
-                      <TableColumn fx:id="lastNameCEC" prefWidth="75.0" text="last_name" />
-                    </columns>
-                     <HBox.margin>
-                        <Insets left="40.0" />
-                     </HBox.margin>
-                  </TableView>
-                  <TableView fx:id="fldParties" prefHeight="200.0" prefWidth="200.0">
-                    <columns>
-                      <TableColumn fx:id="partyId" prefWidth="75.0" text="id" />
-                      <TableColumn fx:id="partyName" prefWidth="75.0" text="name" />
-                    </columns>
-                     <HBox.margin>
-                        <Insets left="40.0" />
-                     </HBox.margin>
-                  </TableView>
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <TableView prefHeight="200.0" prefWidth="200.0">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
-                    </columns>
-                  </TableView>
-               </children></HBox>
+            <Label alignment="CENTER" prefHeight="0.0" prefWidth="43.0" text="Voters">
+               <GridPane.margin>
+                  <Insets left="400.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="CEC Members" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="130.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Political Parties" GridPane.columnIndex="2">
+               <GridPane.margin>
+                  <Insets left="80.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </Label>
+            <Label text="Candidates" GridPane.columnIndex="3">
+               <GridPane.margin>
+                  <Insets left="160.0" top="20.0" />
+               </GridPane.margin>
+            </Label>
+            <TableView fx:id="tableViewVoters" maxWidth="1.7976931348623157E308" prefHeight="200.0" GridPane.rowIndex="1">
+              <columns>
+                  <TableColumn fx:id="password" prefWidth="75.0" text="Password" />
+                  <TableColumn fx:id="firstName" prefWidth="75.0" text="First name" />
+                  <TableColumn fx:id="lastName" prefWidth="75.0" text="Last name" />
+                <TableColumn fx:id="username" prefWidth="75.0" text="Username" />
+                <TableColumn fx:id="jmbg" prefWidth="75.0" text="JMBG" />
+                  <TableColumn fx:id="birth" prefWidth="75.0" text="Date of birth" />
+                  <TableColumn fx:id="city" maxWidth="1000.0" minWidth="-1.0" prefWidth="100.0" text="City" />
+                  <TableColumn fx:id="adress" prefWidth="75.0" text="Adress" />
+                  <TableColumn fx:id="email" prefWidth="75.0" text="Email" />
+                  <TableColumn fx:id="phone" prefWidth="75.0" text="Phone" />
+                  <TableColumn fx:id="badge" prefWidth="75.0" text="Badge" />
+              </columns>
+               <GridPane.margin>
+                  <Insets left="30.0" top="10.0" />
+               </GridPane.margin>
+            </TableView>
+            <TableView fx:id="tblCEC" maxWidth="-Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1">
+              <columns>
+                  <TableColumn fx:id="code" prefWidth="75.0" text="Code" />
+                  <TableColumn fx:id="usernameCEC" prefWidth="75.0" text="Username" />
+                <TableColumn fx:id="firstNameCEC" prefWidth="75.0" text="first_name" />
+                <TableColumn fx:id="lastNameCEC" prefWidth="75.0" text="last_name" />
+              </columns>
+               <GridPane.margin>
+                  <Insets left="10.0" top="10.0" />
+               </GridPane.margin>
+            </TableView>
+            <TableView fx:id="tblParties" maxWidth="-Infinity" GridPane.columnIndex="2" GridPane.rowIndex="1">
+              <columns>
+                <TableColumn fx:id="partyId" prefWidth="75.0" text="id" />
+                <TableColumn fx:id="partyName" prefWidth="75.0" text="name" />
+              </columns>
+               <GridPane.margin>
+                  <Insets left="10.0" top="10.0" />
+               </GridPane.margin>
+            </TableView>
+            <TableView fx:id="tblCandidates" GridPane.columnIndex="3" GridPane.rowIndex="1">
+              <columns>
+                  <TableColumn fx:id="candId" prefWidth="75.0" text="id" />
+                  <TableColumn fx:id="candName" prefWidth="75.0" text="First name" />
+                  <TableColumn fx:id="candLast" prefWidth="75.0" text="Last name" />
+                <TableColumn fx:id="numOfVotes" prefWidth="75.0" text="Number of votes" />
+                <TableColumn fx:id="pp" prefWidth="75.0" text="Political Party Id" />
+              </columns>
+               <GridPane.margin>
+                  <Insets left="10.0" right="30.0" top="10.0" />
+               </GridPane.margin>
+            </TableView>
          </children>
-      </VBox>
+      </GridPane>
    </center>
 </BorderPane>
