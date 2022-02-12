@@ -15,7 +15,7 @@ public class DAO {
     private static DAO instance;
     private PreparedStatement allVotersQuery, allCecMembersQuery, allPoliticalParties, allCandidatesQuery,
     addCECQuery, editCECQuery, deleteCECQuery, newIdCECQuery,addVoterQuery, editVoterQuery, deleteVoterQuery,
-    addCandidateQuery, editCandidateQuery, deleteCandidateQuery, newIdCandidateQuery;
+    addCandidateQuery, editCandidateQuery, deleteCandidateQuery, newIdCandidateQuery, addPartyQuery, editPartyQuery, deletePartyQuery, newIdPartyQuery;
             ;
 
     public DAO() {
@@ -44,6 +44,11 @@ public class DAO {
             editCandidateQuery = conn.prepareStatement("UPDATE Candidates SET first_name=?, last_name=?, numberOfVotes=?, political_party=? WHERE id=?");
             deleteCandidateQuery = conn.prepareStatement("DELETE FROM Candidates WHERE id=?");
             newIdCandidateQuery = conn.prepareStatement("SELECT MAX(id)+1 FROM Candidates");
+
+            addPartyQuery = conn.prepareStatement("INSERT INTO PoliticalParties VALUES(?,?)");
+            editPartyQuery = conn.prepareStatement("UPDATE PoliticalParties SET name=? WHERE id=?");
+            deletePartyQuery = conn.prepareStatement("DELETE FROM PoliticalParties WHERE id=?");
+            newIdPartyQuery = conn.prepareStatement("SELECT MAX(id)+1 FROM PoliticalParties");
 
 
 
@@ -352,6 +357,45 @@ public class DAO {
 
             deleteCandidateQuery.setInt(1, id);
             deleteCandidateQuery.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void addParty(PoliticalParty party){
+        ResultSet rs = null;
+        try {
+            rs = newIdPartyQuery.executeQuery();
+            rs.next();
+            int noviId = rs.getInt(1);
+
+            addPartyQuery.setInt(1, noviId);
+            addPartyQuery.setString(2, party.getName());
+
+            addPartyQuery.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void updateParty(PoliticalParty party){
+
+        try {
+            editPartyQuery.setString(1, party.getName());
+            editPartyQuery.setInt(2,party.getId());
+            editPartyQuery.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    void deleteParty(int id){
+        try {
+
+            deletePartyQuery.setInt(1, id);
+            deletePartyQuery.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();

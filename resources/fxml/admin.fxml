@@ -21,7 +21,7 @@
                      <items>
                          <MenuItem mnemonicParsing="false" onAction="#deleteCecAction" text="CEC Member" />
                          <MenuItem mnemonicParsing="false" onAction="#deleteCandidateAction" text="Candidate" />
-                         <MenuItem mnemonicParsing="false" onAction="#deletePArtyAction" text="Political Party" />
+                         <MenuItem mnemonicParsing="false" onAction="#deletePartyAction" text="Political Party" />
                          <MenuItem mnemonicParsing="false" onAction="#deleteVoterAction" text="Voter" />
                      </items></Menu>
                   <Menu mnemonicParsing="false" text="Edit">

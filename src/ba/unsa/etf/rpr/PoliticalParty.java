@@ -10,6 +10,9 @@ public class PoliticalParty {
         this.name = name;
     }
 
+    public PoliticalParty() {
+    }
+
     public int getId() {
         return id;
     }
