@@ -14,7 +14,8 @@ public class DAO {
     private Connection conn;
     private static DAO instance;
     private PreparedStatement allVotersQuery, allCecMembersQuery, allPoliticalParties, allCandidatesQuery,
-    addCECQuery, editCECQuery, deleteCECQuery, newIdCECQuery,addVoterQuery, editVoterQuery, deleteVoterQuery;
+    addCECQuery, editCECQuery, deleteCECQuery, newIdCECQuery,addVoterQuery, editVoterQuery, deleteVoterQuery,
+    addCandidateQuery, editCandidateQuery, deleteCandidateQuery, newIdCandidateQuery;
             ;
 
     public DAO() {
@@ -38,6 +39,11 @@ public class DAO {
             addVoterQuery = conn.prepareStatement("INSERT INTO Voters VALUES(?,?,?,?,?,?,?,?,?,?,?)");
             editVoterQuery = conn.prepareStatement("UPDATE Voters SET first_name=?, last_name=?, username=?, jmbg=?, date_of_birth=?, city=?, adress=?, email=?, phone=? WHERE id_pass=?");
             deleteVoterQuery = conn.prepareStatement("DELETE FROM Voters WHERE id_pass=?");
+
+            addCandidateQuery = conn.prepareStatement("INSERT INTO Candidates VALUES(?,?,?,?,?)");
+            editCandidateQuery = conn.prepareStatement("UPDATE Candidates SET first_name=?, last_name=?, numberOfVotes=?, political_party=? WHERE id=?");
+            deleteCandidateQuery = conn.prepareStatement("DELETE FROM Candidates WHERE id=?");
+            newIdCandidateQuery = conn.prepareStatement("SELECT MAX(id)+1 FROM Candidates");
 
 
 
@@ -308,6 +314,50 @@ public class DAO {
             e.printStackTrace();
         }
     }
+    void addCandidate(Candidate candidate){
+        ResultSet rs = null;
+        try {
+            rs = newIdCandidateQuery.executeQuery();
+            rs.next();
+            int noviId = rs.getInt(1);
+
+            addCandidateQuery.setInt(1, noviId);
+            addCandidateQuery.setString(2, candidate.getFirstName());
+            addCandidateQuery.setString(3, candidate.getLastName());
+            addCandidateQuery.setInt(4, candidate.getNumOfVotes());
+            addCandidateQuery.setInt(5, candidate.getPoliticalPartyId());
+            addCandidateQuery.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void updateCandidate(Candidate candidate){
+
+        try {
+            editCandidateQuery.setString(1, candidate.getFirstName());
+            editCandidateQuery.setString(2, candidate.getLastName());
+            editCandidateQuery.setInt(3, candidate.getNumOfVotes());
+            editCandidateQuery.setInt(4, candidate.getPoliticalPartyId());
+            editCandidateQuery.setInt(5,candidate.getId());
+            editCandidateQuery.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    void deleteCandidate(int id){
+        try {
+
+            deleteCandidateQuery.setInt(1, id);
+            deleteCandidateQuery.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 }

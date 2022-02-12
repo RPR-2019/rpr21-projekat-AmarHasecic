@@ -258,7 +258,6 @@ public class AdminController {
             model.deleteVoter(voter.getPassword());
             listVoters.setAll(model.votersObs());
         }
-
     }
 
 
@@ -266,24 +265,95 @@ public class AdminController {
 
 
     public void addCandidateAction(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        Parent root = null;
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/candidate-update.fxml"));
+        CandidateUpdateController ctrl = new CandidateUpdateController( model.candidatesObs(), null);
+        loader.setController(ctrl);
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene = new Scene(root);
+        stage.setTitle("Add Candidate");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+
+        stage.setOnHiding( event -> {
+            Candidate candidate = ctrl.getCandidate();
+            if (candidate != null) {
+                model.addCandidate(candidate);
+                listCandidates.setAll(model.candidatesObs());
+            }
+
+        } );
+
+    }
+    public void editCandidateAction(ActionEvent actionEvent) {
+       Candidate candidate = (Candidate) tblCandidates.getSelectionModel().getSelectedItem();
+        if (candidate == null) return;
+
+        Stage stage = new Stage();
+        Parent root = null;
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/candidate-update.fxml"));
+        CandidateUpdateController ctrl = new CandidateUpdateController( model.candidatesObs(), candidate);
+        loader.setController(ctrl);
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene = new Scene(root);
+        stage.setTitle("Edit Candidate");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+
+        stage.setOnHiding( event -> {
+            Candidate c = ctrl.getCandidate();
+            if (c != null) {
+                model.updateCandidate(c);
+                listCandidates.setAll(model.candidatesObs());
+            }
+
+        } );
+    }
+
+    public void deleteCandidateAction(ActionEvent actionEvent) {
+        Candidate candidate = (Candidate) tblCandidates.getSelectionModel().getSelectedItem();
+        if (candidate == null) return;
+
+
+        Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
+        upozorenje.setTitle("Confirmation");
+        upozorenje.setHeaderText("Delete?");
+        Optional<ButtonType> result = upozorenje.showAndWait();
+
+        if(result.get() == ButtonType.OK)
+        {
+            model.deleteCandidate(candidate.getId());
+            listCandidates.setAll(model.candidatesObs());
+        }
+
+
     }
 
     public void addPartyAction(ActionEvent actionEvent) {
     }
 
 
-    public void deleteCandidateAction(ActionEvent actionEvent) {
-    }
-
     public void deletePArtyAction(ActionEvent actionEvent) {
     }
 
 
-    public void editCandidateAction(ActionEvent actionEvent) {
-    }
-
     public void editPartyAction(ActionEvent actionEvent) {
     }
+
+
 
 
     public void exitAction(ActionEvent actionEvent) {

@@ -12,6 +12,9 @@ public class Candidate {
         this.lastName = lastName;
     }
 
+    public Candidate() {
+    }
+
     public int getId() {
         return id;
     }
