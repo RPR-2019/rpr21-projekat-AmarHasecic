@@ -29,6 +29,27 @@ public class VoterController {
     }
 
     public void startVotingAction(ActionEvent actionEvent){
+        Stage stage = new Stage();
+        Parent root = null;
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/voting-page1.fxml"));
+        VotingPage1Controller ctrl;
+        ctrl = new VotingPage1Controller(voter);
+
+        loader.setController(ctrl);
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Choose Political Party");
+        stage.show();
+
+        Stage currentStage = (Stage) lblHello.getScene().getWindow();
+        currentStage.close();
           
     }
 

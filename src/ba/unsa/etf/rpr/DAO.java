@@ -15,8 +15,9 @@ public class DAO {
     private static DAO instance;
     private PreparedStatement allVotersQuery, allCecMembersQuery, allPoliticalParties, allCandidatesQuery,
     addCECQuery, editCECQuery, deleteCECQuery, newIdCECQuery,addVoterQuery, editVoterQuery, deleteVoterQuery,
-    addCandidateQuery, editCandidateQuery, deleteCandidateQuery, newIdCandidateQuery, addPartyQuery, editPartyQuery, deletePartyQuery, newIdPartyQuery;
-            ;
+    addCandidateQuery, editCandidateQuery, deleteCandidateQuery, newIdCandidateQuery, addPartyQuery, editPartyQuery, deletePartyQuery, newIdPartyQuery,
+    addVoteQuery, deleteVoteQuery, allCandidatesFromParty, newVoteId;
+    ;
 
     public DAO() {
         String url = "jdbc:sqlite:baza.db";
@@ -50,8 +51,10 @@ public class DAO {
             deletePartyQuery = conn.prepareStatement("DELETE FROM PoliticalParties WHERE id=?");
             newIdPartyQuery = conn.prepareStatement("SELECT MAX(id)+1 FROM PoliticalParties");
 
-
-
+            addVoteQuery = conn.prepareStatement("INSERT INTO voting_sheets VALUES(?,?,?)");
+            deleteVoteQuery = conn.prepareStatement("DELETE FROM voting_sheets WHERE id=?");
+            allCandidatesFromParty = conn.prepareStatement("SELECT * FROM Candidates WHERE political_party=?");
+            newVoteId = conn.prepareStatement("SELECT MAX(id)+1 FROM voting_sheets");
 
 
         }
@@ -88,6 +91,8 @@ public class DAO {
         }
         return output;
     }
+
+
     ObservableList<Voter> votersObs() {
         ObservableList<Voter> output = FXCollections.observableArrayList();
         try {
@@ -98,6 +103,24 @@ public class DAO {
                         rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
 
                 output.add(voter);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
+    ObservableList<Candidate> getCandidatesFromParty(PoliticalParty party) {
+        ObservableList<Candidate> output = FXCollections.observableArrayList();
+        try {
+            allCandidatesFromParty.setInt(1,party.getId());
+            ResultSet rs = allCandidatesFromParty.executeQuery();
+
+            while (rs.next()) {
+               Candidate candidate = new Candidate(rs.getInt(1), rs.getInt(4),rs.getString(2), rs.getString(3));
+                output.add(candidate);
             }
 
 
@@ -402,6 +425,34 @@ public class DAO {
         }
     }
 
+    void addVote(VotingForm form)
+    {
+        ResultSet rs = null;
+        try {
+            rs = newVoteId.executeQuery();
+            rs.next();
+            int noviId = rs.getInt(1);
+
+            addVoteQuery.setInt(1, noviId);
+            addVoteQuery.setString(2, form.getParty());
+            addVoteQuery.setString(3, form.getCandidate());
+            addVoteQuery.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    void deleteVote(int id)
+    {
+        try {
+            deleteVoteQuery.setInt(1, id);
+            deleteVoteQuery.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

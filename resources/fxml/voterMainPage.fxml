@@ -27,7 +27,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#cancelAction" text="Cancel" />
+                  <Button mnemonicParsing="false" onAction="#cancelAction" text="Exit" />
               </buttons>
                <VBox.margin>
                   <Insets right="195.0" />

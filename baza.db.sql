@@ -34,5 +34,13 @@ CREATE TABLE IF NOT EXISTS "Voters" (
 	"badge"	TEXT,
 	PRIMARY KEY("id_pass")
 );
+CREATE TABLE IF NOT EXISTS "voting_sheets" (
+	"id"	INTEGER,
+	"candidate"	TEXT,
+	"political_party"	TEXT
+);
+INSERT INTO "CECMembers" VALUES (1234,'hase','Amar','Hasečić');
+INSERT INTO "Candidates" VALUES (1,'Vedad','Hasečić',0,0);
+INSERT INTO "PoliticalParties" VALUES (1,'Stranka');
 INSERT INTO "Voters" VALUES ('amar','Amar','Hasečić','amar','180500070005','18.5.2000','Sarajevo','Topal Osman Paše 12','ahasecic1@etf.unsa.ba','603347350',NULL);
 COMMIT;
