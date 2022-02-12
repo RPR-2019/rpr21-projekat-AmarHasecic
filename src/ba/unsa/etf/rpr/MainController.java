@@ -86,8 +86,7 @@ public class MainController{
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setMaximized(true);
-
+            stage.setTitle("Welcome page");
             stage.show();
         }
 

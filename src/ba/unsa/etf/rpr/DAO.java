@@ -13,7 +13,8 @@ public class DAO {
 
     private Connection conn;
     private static DAO instance;
-    private PreparedStatement allVotersQuery, allCecMembersQuery, allPoliticalParties, allCandidatesQuery;
+    private PreparedStatement allVotersQuery, allCecMembersQuery, allPoliticalParties, allCandidatesQuery,
+    addCECQuery, editCECQuery, deleteCECQuery, newIdCECQuery;
             ;
 
     public DAO() {
@@ -28,6 +29,15 @@ public class DAO {
             allCecMembersQuery = conn.prepareStatement("SELECT * FROM CECMembers");
             allPoliticalParties = conn.prepareStatement("SELECT * FROM PoliticalParties");
             allCandidatesQuery = conn.prepareStatement("SELECT * FROM Candidates");
+
+            addCECQuery = conn.prepareStatement("INSERT INTO CECMembers VALUES(?,?,?,?)");
+            editCECQuery = conn.prepareStatement("UPDATE CECMembers SET username=?, first_name=?, last_name=? WHERE code=?");
+            deleteCECQuery = conn.prepareStatement("DELETE FROM CECMembers WHERE code=?");
+            newIdCECQuery = conn.prepareStatement("SELECT MAX(code)+1 FROM CECMembers");
+
+
+
+
         }
         catch (SQLException e) {
             createDatabase();
@@ -195,6 +205,49 @@ public class DAO {
 
     public Connection getConn() {
         return conn;
+    }
+
+
+    void addCec(CECMember member){
+        ResultSet rs = null;
+        try {
+            rs = newIdCECQuery.executeQuery();
+            rs.next();
+            int noviId = rs.getInt(1);
+
+            addCECQuery.setInt(1, noviId);
+            addCECQuery.setString(2, member.getUsername());
+            addCECQuery.setString(3, member.getFirstName());
+            addCECQuery.setString(4, member.getLastName());
+            addCECQuery.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void updateCec(CECMember member){
+
+        try {
+            editCECQuery.setString(1, member.getUsername());
+            editCECQuery.setString(2, member.getFirstName());
+            editCECQuery.setString(3, member.getLastName());
+            editCECQuery.setInt(4, member.getCode());
+            editCECQuery.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    void deleteCec(int code){
+        try {
+
+            deleteCECQuery.setInt(1, code);
+            deleteCECQuery.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

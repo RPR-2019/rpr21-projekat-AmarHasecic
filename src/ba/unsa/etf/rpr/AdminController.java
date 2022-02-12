@@ -1,11 +1,18 @@
 package ba.unsa.etf.rpr;
 
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import javax.swing.text.TabExpander;
+import java.io.IOException;
+import java.util.Optional;
 
 public class AdminController {
 
@@ -42,19 +49,30 @@ public class AdminController {
     public TableColumn numOfVotes;
     public TableColumn pp;
 
+    public ObservableList listCECMembers;
+    public ObservableList listVoters;
+    public ObservableList listPrties;
+    public ObservableList listCandidates;
+
 
 
     public AdminController() {
         model = DAO.getInstance();
+        this.listCECMembers = FXCollections.observableArrayList(model.cecMembersObs());
+        this.listVoters = FXCollections.observableArrayList(model.voters());
+        this.listPrties = FXCollections.observableArrayList(model.partiesObs());
+        this.listCandidates = FXCollections.observableArrayList(model.candidatesObs());
+
 
     }
 
     public void initialize(){
 
-        tableViewVoters.setItems(model.votersObs());
-        tblCEC.setItems(model.cecMembersObs());
-        tblParties.setItems(model.partiesObs());
-        tblCandidates.setItems(model.candidatesObs());
+
+        tableViewVoters.setItems(listVoters);
+        tblCEC.setItems(listCECMembers);
+        tblParties.setItems(listPrties);
+        tblCandidates.setItems(listCandidates);
 
 
         password.setCellValueFactory(new PropertyValueFactory("password"));
@@ -84,9 +102,138 @@ public class AdminController {
         numOfVotes.setCellValueFactory(new PropertyValueFactory("numOfVotes"));
         pp.setCellValueFactory(new PropertyValueFactory<>("PoliticalPartyId"));
 
+    }
 
+    public void addCecAction(ActionEvent actionEvent) {
 
+        Stage stage = new Stage();
+        Parent root = null;
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/cec-update.fxml"));
+        CECUpdateController ctrl = new CECUpdateController( model.cecMembersObs(), null);
+        loader.setController(ctrl);
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene = new Scene(root);
+        stage.setTitle("Add CEC Member");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+
+        stage.setOnHiding( event -> {
+            CECMember member = ctrl.getMember();
+            if (member != null) {
+                model.addCec(member);
+                listCECMembers.setAll(model.cecMembersObs());
+            }
+
+        } );
 
     }
+    public void editCecAction(ActionEvent actionEvent) {
+        CECMember member = (CECMember) tblCEC.getSelectionModel().getSelectedItem();
+        if (member == null) return;
+
+        Stage stage = new Stage();
+        Parent root = null;
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/cec-update.fxml"));
+        CECUpdateController ctrl = new CECUpdateController( model.cecMembersObs(), member);
+        loader.setController(ctrl);
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene = new Scene(root);
+        stage.setTitle("Add CEC Member");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+
+        stage.setOnHiding( event -> {
+            CECMember m = ctrl.getMember();
+            if (m != null) {
+                model.updateCec(m);
+                listCECMembers.setAll(model.cecMembersObs());
+            }
+
+        } );
+
+    }
+    public void deleteCecAction(ActionEvent actionEvent) {
+
+        CECMember member = (CECMember) tblCEC.getSelectionModel().getSelectedItem();
+        if (member == null) return;
+
+        Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
+        upozorenje.setTitle("Confirmation");
+        upozorenje.setHeaderText("Delete?");
+        Optional<ButtonType> result = upozorenje.showAndWait();
+
+        if(result.get() == ButtonType.OK)
+        {
+            model.deleteCec(member.getCode());
+            listCECMembers.setAll(model.cecMembersObs());
+        }
+
+    }
+
+
+
+
+    public void addCandidateAction(ActionEvent actionEvent) {
+    }
+
+    public void addPartyAction(ActionEvent actionEvent) {
+    }
+
+    public void addVoterAction(ActionEvent actionEvent) {
+    }
+
+    public void deleteCandidateAction(ActionEvent actionEvent) {
+    }
+
+    public void deletePArtyAction(ActionEvent actionEvent) {
+    }
+
+    public void deleteVoterAction(ActionEvent actionEvent) {
+    }
+
+    public void editCandidateAction(ActionEvent actionEvent) {
+    }
+
+    public void editPartyAction(ActionEvent actionEvent) {
+    }
+
+    public void editVoterAction(ActionEvent actionEvent) {
+    }
+    public void exitAction(ActionEvent actionEvent) {
+
+        Stage stage = new Stage();
+        Parent root = null;
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
+        MainController ctrl;
+        ctrl = new MainController();
+
+        loader.setController(ctrl);
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Vote!");
+        stage.show();
+
+        Stage currentStage = (Stage) tableViewVoters.getScene().getWindow();
+        currentStage.close();
+    }
+
 }

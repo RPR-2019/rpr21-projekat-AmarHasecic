@@ -12,6 +12,9 @@ public class CECMember {
         this.lastName = lastName;
     }
 
+    public CECMember() {
+    }
+
     public int getCode() {
         return code;
     }

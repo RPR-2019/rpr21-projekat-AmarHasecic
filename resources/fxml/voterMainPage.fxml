@@ -9,11 +9,31 @@
    <top>
       <Label fx:id="lblHello" text="Hello -name-" textFill="#363636" BorderPane.alignment="CENTER">
          <padding>
-            <Insets left="20.0" top="20.0" />
+            <Insets top="20.0" />
          </padding>
          <font>
             <Font name="Gidugu" size="40.0" />
          </font>
       </Label>
    </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text=" Welcome.&#10;&#10;  This is an app for Voting on Elections.&#10;  When you press &quot;Start voting&quot; new window will pop up.&#10;  There, you select Political Party or Candidate and click on next.&#10;  In the end, if you want to, you can view your voting sheet.&#10;  When you finish, you will get a badge &quot;I voted&quot; and you can not vote again.&#10;&#10;" />
+            <ButtonBar prefHeight="109.0" prefWidth="400.0">
+              <buttons>
+                <Button mnemonicParsing="false" onAction="#startVotingAction" text="Start voting">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#cancelAction" text="Cancel" />
+              </buttons>
+               <VBox.margin>
+                  <Insets right="195.0" />
+               </VBox.margin>
+            </ButtonBar>
+         </children>
+      </VBox>
+   </center>
 </BorderPane>
