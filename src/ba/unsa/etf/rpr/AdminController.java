@@ -315,6 +315,7 @@ public class AdminController {
         stage.setOnHiding( event -> {
             Candidate candidate = ctrl.getCandidate();
             if (candidate != null) {
+                candidate.setNumOfVotes(0);
                 model.addCandidate(candidate);
                 listCandidates.setAll(model.candidatesObs());
             }

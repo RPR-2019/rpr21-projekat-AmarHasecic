@@ -6,10 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class MainController{
 
@@ -50,6 +53,9 @@ public class MainController{
             stage.setScene(scene);
             stage.setMaximized(true);
             stage.show();
+
+            Stage currentStage = (Stage) fieldUsername.getScene().getWindow();
+            currentStage.close();
         }
 
         boolean flag = false;
@@ -88,11 +94,19 @@ public class MainController{
             stage.setScene(scene);
             stage.setTitle("Welcome page");
             stage.show();
+
+            Stage currentStage = (Stage) fieldUsername.getScene().getWindow();
+            currentStage.close();
+        }
+        if(flag == false)
+        {
+            Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
+            upozorenje.setTitle("Sorry...");
+            upozorenje.setHeaderText("You are not registered");
+            Optional<ButtonType> result = upozorenje.showAndWait();
+            return;
         }
 
-
-        Stage currentStage = (Stage) fieldUsername.getScene().getWindow();
-        currentStage.close();
 
     }
 }

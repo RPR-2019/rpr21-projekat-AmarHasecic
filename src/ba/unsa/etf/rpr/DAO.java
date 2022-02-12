@@ -171,6 +171,7 @@ public class DAO {
 
             while (rs.next()) {
                 Candidate candidate = new Candidate(rs.getInt(1), rs.getInt(4),rs.getString(2), rs.getString(3));
+                candidate.setPoliticalPartyId(rs.getInt(5));
                 output.add(candidate);
             }
 

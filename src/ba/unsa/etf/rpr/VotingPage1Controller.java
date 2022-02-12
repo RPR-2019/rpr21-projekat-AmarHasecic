@@ -28,6 +28,26 @@ public class VotingPage1Controller {
 
     public void nextAction(ActionEvent actionEvent){
 
+        if(listViewParties.getSelectionModel().getSelectedItem()==null) return;
+        Stage stage = new Stage();
+        Parent root = null;
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/voting-page2.fxml"));
+        VotingPage2Controller ctrl = new VotingPage2Controller((PoliticalParty)listViewParties.getSelectionModel().getSelectedItem(),voter);
+        loader.setController(ctrl);
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Choose Candidates");
+        stage.show();
+
+        Stage currentStage = (Stage) listViewParties.getScene().getWindow();
+        currentStage.close();
     }
 
     public void backAction(ActionEvent actionEvent){

@@ -47,13 +47,7 @@ public class CandidateUpdateController {
 
         candidate.setFirstName(firstName.getText());
         candidate.setLastName(lastName.getText());
-
-        if(!party.getText().isBlank())
-        {
-            candidate.setPoliticalPartyId(Integer.parseInt(party.getText()));
-        }
-
-        candidate.setNumOfVotes(0);
+        candidate.setPoliticalPartyId(Integer.parseInt(party.getText()));
 
         Stage stage = (Stage) firstName.getScene().getWindow();
         stage.close();
