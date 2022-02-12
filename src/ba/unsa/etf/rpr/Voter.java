@@ -21,6 +21,9 @@ public class Voter {
         return badge;
     }
 
+    public Voter() {
+    }
+
     public void setBadge(String badge) {
         this.badge = badge;
     }

@@ -14,7 +14,7 @@ public class DAO {
     private Connection conn;
     private static DAO instance;
     private PreparedStatement allVotersQuery, allCecMembersQuery, allPoliticalParties, allCandidatesQuery,
-    addCECQuery, editCECQuery, deleteCECQuery, newIdCECQuery;
+    addCECQuery, editCECQuery, deleteCECQuery, newIdCECQuery,addVoterQuery, editVoterQuery, deleteVoterQuery;
             ;
 
     public DAO() {
@@ -34,6 +34,11 @@ public class DAO {
             editCECQuery = conn.prepareStatement("UPDATE CECMembers SET username=?, first_name=?, last_name=? WHERE code=?");
             deleteCECQuery = conn.prepareStatement("DELETE FROM CECMembers WHERE code=?");
             newIdCECQuery = conn.prepareStatement("SELECT MAX(code)+1 FROM CECMembers");
+
+            addVoterQuery = conn.prepareStatement("INSERT INTO Voters VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+            editVoterQuery = conn.prepareStatement("UPDATE Voters SET first_name=?, last_name=?, username=?, jmbg=?, date_of_birth=?, city=?, adress=?, email=?, phone=? WHERE id_pass=?");
+            deleteVoterQuery = conn.prepareStatement("DELETE FROM Voters WHERE id_pass=?");
+
 
 
 
@@ -249,5 +254,60 @@ public class DAO {
             e.printStackTrace();
         }
     }
+
+    void addVoter(Voter voter){
+
+  try{
+      addVoterQuery.setString(1, voter.getPassword());
+      addVoterQuery.setString(2, voter.getFirstName());
+      addVoterQuery.setString(3, voter.getLastName());
+      addVoterQuery.setString(4, voter.getUsername());
+      addVoterQuery.setString(5, voter.getJmbg());
+      addVoterQuery.setString(6, voter.getDate());
+      addVoterQuery.setString(7, voter.getCity());
+      addVoterQuery.setString(8, voter.getAdress());
+      addVoterQuery.setString(9, voter.getEmail());
+      addVoterQuery.setString(10, voter.getPhone());
+      addVoterQuery.setString(11, voter.getBadge());
+
+            addVoterQuery.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void updateVoter(Voter voter){
+
+        try {
+
+            editVoterQuery.setString(10, voter.getPassword());
+            editVoterQuery.setString(1, voter.getFirstName());
+            editVoterQuery.setString(2, voter.getLastName());
+            editVoterQuery.setString(3, voter.getUsername());
+            editVoterQuery.setString(4, voter.getJmbg());
+            editVoterQuery.setString(5, voter.getDate());
+            editVoterQuery.setString(6, voter.getCity());
+            editVoterQuery.setString(7, voter.getAdress());
+            editVoterQuery.setString(8, voter.getEmail());
+            editVoterQuery.setString(9, voter.getPhone());
+
+            editVoterQuery.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    void deleteVoter(String password){
+        try {
+
+            deleteVoterQuery.setString(1, password);
+            deleteVoterQuery.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

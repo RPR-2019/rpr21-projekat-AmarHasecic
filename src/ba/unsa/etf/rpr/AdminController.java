@@ -149,7 +149,7 @@ public class AdminController {
             e.printStackTrace();
         }
         Scene scene = new Scene(root);
-        stage.setTitle("Add CEC Member");
+        stage.setTitle("Edit CEC Member");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
@@ -182,6 +182,86 @@ public class AdminController {
 
     }
 
+    public void addVoterAction(ActionEvent actionEvent) {
+
+        Stage stage = new Stage();
+        Parent root = null;
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/voter-update.fxml"));
+        VoterUpdateController ctrl = new VoterUpdateController( model.votersObs(), null);
+        loader.setController(ctrl);
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene = new Scene(root);
+        stage.setTitle("Add Voter");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+
+        stage.setOnHiding( event -> {
+            Voter voter = ctrl.getVoter();
+            if (voter != null) {
+                model.addVoter(voter);
+                listVoters.setAll(model.voters());
+            }
+
+        } );
+
+    }
+
+    public void editVoterAction(ActionEvent actionEvent) {
+
+        Voter voter = (Voter) tableViewVoters.getSelectionModel().getSelectedItem();
+        if (voter == null) return;
+
+        Stage stage = new Stage();
+        Parent root = null;
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/voter-update.fxml"));
+        VoterUpdateController ctrl = new VoterUpdateController( model.votersObs(), voter);
+        loader.setController(ctrl);
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene = new Scene(root);
+        stage.setTitle("Edit Voter");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+
+        stage.setOnHiding( event -> {
+            Voter v = ctrl.getVoter();
+            if (v != null) {
+                model.updateVoter(v);
+                listVoters.setAll(model.votersObs());
+            }
+
+        } );
+
+    }
+    public void deleteVoterAction(ActionEvent actionEvent) {
+        Voter voter = (Voter) tableViewVoters.getSelectionModel().getSelectedItem();
+        if (voter == null) return;
+
+        Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
+        upozorenje.setTitle("Confirmation");
+        upozorenje.setHeaderText("Delete?");
+        Optional<ButtonType> result = upozorenje.showAndWait();
+
+        if(result.get() == ButtonType.OK)
+        {
+            model.deleteVoter(voter.getPassword());
+            listVoters.setAll(model.votersObs());
+        }
+
+    }
+
+
 
 
 
@@ -191,8 +271,6 @@ public class AdminController {
     public void addPartyAction(ActionEvent actionEvent) {
     }
 
-    public void addVoterAction(ActionEvent actionEvent) {
-    }
 
     public void deleteCandidateAction(ActionEvent actionEvent) {
     }
@@ -200,8 +278,6 @@ public class AdminController {
     public void deletePArtyAction(ActionEvent actionEvent) {
     }
 
-    public void deleteVoterAction(ActionEvent actionEvent) {
-    }
 
     public void editCandidateAction(ActionEvent actionEvent) {
     }
@@ -209,8 +285,7 @@ public class AdminController {
     public void editPartyAction(ActionEvent actionEvent) {
     }
 
-    public void editVoterAction(ActionEvent actionEvent) {
-    }
+
     public void exitAction(ActionEvent actionEvent) {
 
         Stage stage = new Stage();
