@@ -8,35 +8,35 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-            <Menu mnemonicParsing="false" text="Options">
+            <Menu text="_Options">
               <items>
-                  <Menu mnemonicParsing="false" text="Add">
+                  <Menu text="_Add">
                      <items>
-                         <MenuItem mnemonicParsing="false" onAction="#addCecAction" text="CEC Member" />
-                         <MenuItem mnemonicParsing="false" onAction="#addCandidateAction" text="Candidate" />
-                         <MenuItem mnemonicParsing="false" onAction="#addPartyAction" text="Political Party" />
-                         <MenuItem mnemonicParsing="false" onAction="#addVoterAction" text="Voter" />
+                         <MenuItem onAction="#addCecAction" text="CEC _Member" />
+                         <MenuItem onAction="#addCandidateAction" text="_Candidate" />
+                         <MenuItem onAction="#addPartyAction" text="_Political Party" />
+                         <MenuItem onAction="#addVoterAction" text="_Voter" />
                      </items></Menu>
-                  <Menu mnemonicParsing="false" text="Delete">
+                  <Menu text="_Delete">
                      <items>
-                         <MenuItem mnemonicParsing="false" onAction="#deleteCecAction" text="CEC Member" />
-                         <MenuItem mnemonicParsing="false" onAction="#deleteCandidateAction" text="Candidate" />
-                         <MenuItem mnemonicParsing="false" onAction="#deletePartyAction" text="Political Party" />
-                         <MenuItem mnemonicParsing="false" onAction="#deleteVoterAction" text="Voter" />
+                         <MenuItem onAction="#deleteCecAction" text="CEC _Member" />
+                         <MenuItem onAction="#deleteCandidateAction" text="_Candidate" />
+                         <MenuItem onAction="#deletePartyAction" text="_Political Party" />
+                         <MenuItem onAction="#deleteVoterAction" text="_Voter" />
                      </items></Menu>
-                  <Menu mnemonicParsing="false" text="Edit">
+                  <Menu text="_Edit">
                      <items>
-                         <MenuItem mnemonicParsing="false" onAction="#editCecAction" text="CEC Member" />
-                         <MenuItem mnemonicParsing="false" onAction="#editCandidateAction" text="Candidate" />
-                         <MenuItem mnemonicParsing="false" onAction="#editPartyAction" text="Political Party" />
-                         <MenuItem mnemonicParsing="false" onAction="#editVoterAction" text="Voter" />
+                         <MenuItem onAction="#editCecAction" text="CEC _Member" />
+                         <MenuItem onAction="#editCandidateAction" text="_Candidate" />
+                         <MenuItem onAction="#editPartyAction" text="_Political Party" />
+                         <MenuItem onAction="#editVoterAction" text="_Voter" />
                      </items></Menu>
-                  <MenuItem mnemonicParsing="false" onAction="#exitAction" text="Exit" />
+                  <MenuItem onAction="#exitAction" text="E_xit" />
               </items>
             </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu text="_Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#tutAction" text="_Tutorial" />
             </items>
           </Menu>
         </menus>

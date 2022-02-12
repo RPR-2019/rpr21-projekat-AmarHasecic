@@ -507,4 +507,23 @@ public class AdminController {
         currentStage.close();
     }
 
+    public void tutAction(ActionEvent actionEvent){
+
+        Stage stage = new Stage();
+        Parent root = null;
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin-tutorial.fxml"));
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Tutorial");
+        stage.show();
+
+    }
+
 }
