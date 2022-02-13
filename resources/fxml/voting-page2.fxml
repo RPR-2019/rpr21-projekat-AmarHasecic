@@ -8,9 +8,13 @@
     <bottom>
         <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <buttons>
+            <Button mnemonicParsing="false" onAction="#chooseAction" text="Choose" />
                 <Button mnemonicParsing="false" onAction="#backAction" text="Back" />
                 <Button mnemonicParsing="false" onAction="#finishAction" text="Finish" />
             </buttons>
+         <BorderPane.margin>
+            <Insets right="10.0" />
+         </BorderPane.margin>
         </ButtonBar>
     </bottom>
     <center>

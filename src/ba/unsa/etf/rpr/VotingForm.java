@@ -1,15 +1,17 @@
 package ba.unsa.etf.rpr;
 
+import java.util.List;
+
 public class VotingForm {
 
     private int id;
     private String party;
-    private String candidate;
+    private List<Candidate>  candidates;
 
-    public VotingForm(int id, String party, String candidate) {
+    public VotingForm(int id, String party, List<Candidate> candidates) {
         this.id = id;
         this.party = party;
-        this.candidate = candidate;
+        this.candidates = candidates;
     }
 
     public int getId() {
@@ -28,11 +30,11 @@ public class VotingForm {
         this.party = party;
     }
 
-    public String getCandidate() {
-        return candidate;
+    public List<Candidate> getCandidates() {
+        return candidates;
     }
 
-    public void setCandidate(String candidate) {
-        this.candidate = candidate;
+    public void setCandidates(List<Candidate> candidates) {
+        this.candidates = candidates;
     }
 }

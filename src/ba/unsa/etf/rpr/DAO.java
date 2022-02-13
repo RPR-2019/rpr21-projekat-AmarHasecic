@@ -16,7 +16,7 @@ public class DAO {
     private PreparedStatement allVotersQuery, allCecMembersQuery, allPoliticalParties, allCandidatesQuery,
     addCECQuery, editCECQuery, deleteCECQuery, newIdCECQuery,addVoterQuery, editVoterQuery, deleteVoterQuery,
     addCandidateQuery, editCandidateQuery, deleteCandidateQuery, newIdCandidateQuery, addPartyQuery, editPartyQuery, deletePartyQuery, newIdPartyQuery,
-    addVoteQuery, deleteVoteQuery, allCandidatesFromParty, newVoteId;
+    addVoteQuery, deleteVoteQuery, allCandidatesFromParty, newVoteId, updateVoteQuerry;
     ;
 
     public DAO() {
@@ -55,6 +55,8 @@ public class DAO {
             deleteVoteQuery = conn.prepareStatement("DELETE FROM voting_sheets WHERE id=?");
             allCandidatesFromParty = conn.prepareStatement("SELECT * FROM Candidates WHERE political_party=?");
             newVoteId = conn.prepareStatement("SELECT MAX(id)+1 FROM voting_sheets");
+
+            updateVoteQuerry = conn.prepareStatement("UPDATE Candidates SET numberOfVotes=? WHERE id=?");
 
 
         }
@@ -429,31 +431,32 @@ public class DAO {
     void addVote(VotingForm form)
     {
         ResultSet rs = null;
-        try {
-            rs = newVoteId.executeQuery();
-            rs.next();
-            int noviId = rs.getInt(1);
+        for(int i=0; i<form.getCandidates().size();i++) {
+            try {
+                rs = newVoteId.executeQuery();
+                rs.next();
+                int noviId = rs.getInt(1);
 
-            addVoteQuery.setInt(1, noviId);
-            addVoteQuery.setString(2, form.getParty());
-            addVoteQuery.setString(3, form.getCandidate());
-            addVoteQuery.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
+                addVoteQuery.setInt(1, noviId);
+                addVoteQuery.setString(2, form.getParty());
+                addVoteQuery.setString(3, form.getCandidates().get(i).toString());
+                addVoteQuery.execute();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
-
-
-    void deleteVote(int id)
+    void updateVote(Candidate candidate)
     {
         try {
-            deleteVoteQuery.setInt(1, id);
-            deleteVoteQuery.executeUpdate();
-
+            updateVoteQuerry.setInt(1, candidate.getNumOfVotes());
+            updateVoteQuerry.setInt(2, candidate.getId());
+            updateVoteQuerry.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 
 
 }
