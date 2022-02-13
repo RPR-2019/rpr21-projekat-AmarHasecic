@@ -18,10 +18,28 @@
         </ButtonBar>
     </bottom>
     <center>
-        <ListView fx:id="listViewCandidates" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <padding>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-            </padding>
-        </ListView>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="55.0" prefWidth="600.0">
+               <children>
+                  <TextField fx:id="fldSearch" prefHeight="26.0" prefWidth="283.0" promptText="Search candidates">
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button fx:id="searchAction" mnemonicParsing="false" text="Search">
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+              <ListView fx:id="listViewCandidates" prefHeight="316.0" prefWidth="600.0">
+                  <padding>
+                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  </padding>
+              </ListView>
+         </children>
+      </VBox>
     </center>
 </BorderPane>

@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,6 +25,7 @@ public class VotingPage2Controller {
     private Voter voter;
     private ObservableList<Candidate> selectedCandidates;
     private ObservableList<Candidate> candidates;
+    public TextField fldSearch;
 
     public VotingPage2Controller(PoliticalParty party, Voter voter) {
         model = DAO.getInstance();
@@ -121,12 +123,24 @@ public class VotingPage2Controller {
                     candidates.remove(candidate);
                 }
             }
-
-
         }
 
+    }
+
+    public void searchAction(ActionEvent actionEvent){
+
+        ObservableList listCandidates = listViewCandidates.getItems();
+        for(int i = 0; i<listCandidates.size(); i++)
+        {
+            if(listCandidates.get(i).toString().equals(fldSearch.getText()))
+            {
+                listViewCandidates.getSelectionModel().select(listCandidates.get(i));
+                break;
+            }
+        }
 
     }
+
 
 
 }

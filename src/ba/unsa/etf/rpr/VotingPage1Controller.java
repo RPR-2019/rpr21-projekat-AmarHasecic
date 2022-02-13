@@ -1,10 +1,12 @@
 package ba.unsa.etf.rpr;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,6 +17,7 @@ public class VotingPage1Controller {
     public ListView listViewParties;
     public DAO model;
     private Voter voter;
+    public TextField fldSearch;
 
     public VotingPage1Controller(Voter voter) {
         model = DAO.getInstance();
@@ -71,6 +74,20 @@ public class VotingPage1Controller {
 
         Stage currentStage = (Stage) listViewParties.getScene().getWindow();
         currentStage.close();
+
+    }
+
+    public void searchAction(ActionEvent actionEvent){
+
+        ObservableList listParties = listViewParties.getItems();
+        for(int i = 0; i<listParties.size(); i++)
+        {
+            if(listParties.get(i).toString().equals(fldSearch.getText()))
+            {
+                listViewParties.getSelectionModel().select(listParties.get(i));
+                break;
+            }
+        }
 
     }
 
