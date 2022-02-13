@@ -69,27 +69,35 @@ public class VotingPage2Controller {
 
     public void backAction(ActionEvent actionEvent){
 
-        Stage stage = new Stage();
-        Parent root = null;
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Pay attention");
+        alert.setContentText("If youur choice will be deleted because you can only vote for candidates from one Political Party.\n Are you sure you want to go back?");
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/voting-page1.fxml"));
-        VotingPage1Controller ctrl;
-        ctrl = new VotingPage1Controller(voter);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
 
-        loader.setController(ctrl);
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
+            Stage stage = new Stage();
+            Parent root = null;
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/voting-page1.fxml"));
+            VotingPage1Controller ctrl;
+            ctrl = new VotingPage1Controller(voter);
+
+            loader.setController(ctrl);
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Choose Political Party");
+            stage.show();
+
+            Stage currentStage = (Stage) listViewCandidates.getScene().getWindow();
+            currentStage.close();
         }
-
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Choose Political Party");
-        stage.show();
-
-        Stage currentStage = (Stage) listViewCandidates.getScene().getWindow();
-        currentStage.close();
 
     }
 

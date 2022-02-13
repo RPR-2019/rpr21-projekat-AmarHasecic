@@ -17,26 +17,14 @@
                          <MenuItem onAction="#addPartyAction" text="_Political Party" />
                          <MenuItem onAction="#addVoterAction" text="_Voter" />
                      </items></Menu>
-                  <Menu text="_Delete">
-                     <items>
-                         <MenuItem onAction="#deleteCecAction" text="CEC _Member" />
-                         <MenuItem onAction="#deleteCandidateAction" text="_Candidate" />
-                         <MenuItem onAction="#deletePartyAction" text="_Political Party" />
-                         <MenuItem onAction="#deleteVoterAction" text="_Voter" />
-                     </items></Menu>
-                  <Menu text="_Edit">
-                     <items>
-                         <MenuItem onAction="#editCecAction" text="CEC _Member" />
-                         <MenuItem onAction="#editCandidateAction" text="_Candidate" />
-                         <MenuItem onAction="#editPartyAction" text="_Political Party" />
-                         <MenuItem onAction="#editVoterAction" text="_Voter" />
-                     </items></Menu>
+                  <MenuItem onAction="#editAction" text="_Edit" />
+                  <MenuItem onAction="#deleteAction" text="_Delete" />
                   <MenuItem onAction="#exitAction" text="E_xit" />
               </items>
             </Menu>
           <Menu text="_Help">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#tutAction" text="_Tutorial" />
+              <MenuItem onAction="#tutAction" text="_Tutorial" />
             </items>
           </Menu>
         </menus>

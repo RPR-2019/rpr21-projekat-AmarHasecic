@@ -133,70 +133,6 @@ public class AdminController {
         } );
 
     }
-    public void editCecAction(ActionEvent actionEvent) {
-        CECMember member = (CECMember) tblCEC.getSelectionModel().getSelectedItem();
-        if (member == null)
-        {
-            Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
-            upozorenje.setTitle("Error");
-            upozorenje.setHeaderText("You have to select item before performing this action!");
-            Optional<ButtonType> result = upozorenje.showAndWait();
-            return;
-        }
-
-        Stage stage = new Stage();
-        Parent root = null;
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/cec-update.fxml"));
-        CECUpdateController ctrl = new CECUpdateController( model.cecMembersObs(), member);
-        loader.setController(ctrl);
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Scene scene = new Scene(root);
-        stage.setTitle("Edit CEC Member");
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
-
-        stage.setOnHiding( event -> {
-            CECMember m = ctrl.getMember();
-            if (m != null) {
-                model.updateCec(m);
-                listCECMembers.setAll(model.cecMembersObs());
-            }
-
-        } );
-
-    }
-    public void deleteCecAction(ActionEvent actionEvent) {
-
-        CECMember member = (CECMember) tblCEC.getSelectionModel().getSelectedItem();
-
-        if(member==null)
-        {
-            Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
-            upozorenje.setTitle("Error");
-            upozorenje.setHeaderText("You have to select item before performing this action!");
-            Optional<ButtonType> result = upozorenje.showAndWait();
-            return;
-        }
-
-
-        Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
-        upozorenje.setTitle("Confirmation");
-        upozorenje.setHeaderText("Delete?");
-        Optional<ButtonType> result = upozorenje.showAndWait();
-
-        if(result.get() == ButtonType.OK)
-        {
-            model.deleteCec(member.getCode());
-            listCECMembers.setAll(model.cecMembersObs());
-        }
-
-    }
 
     public void addVoterAction(ActionEvent actionEvent) {
 
@@ -228,70 +164,259 @@ public class AdminController {
 
     }
 
-    public void editVoterAction(ActionEvent actionEvent) {
+    public void deleteAction(ActionEvent actionEvent){
 
-        Voter voter = (Voter) tableViewVoters.getSelectionModel().getSelectedItem();
-        if (voter == null)
-        {
-            Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
-            upozorenje.setTitle("Error");
-            upozorenje.setHeaderText("You have to select item before performing this action!");
-            Optional<ButtonType> result = upozorenje.showAndWait();
-            return;
-        }
-
-        Stage stage = new Stage();
-        Parent root = null;
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/voter-update.fxml"));
-        VoterUpdateController ctrl = new VoterUpdateController( model.votersObs(), voter);
-        loader.setController(ctrl);
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Scene scene = new Scene(root);
-        stage.setTitle("Edit Voter");
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
-
-        stage.setOnHiding( event -> {
-            Voter v = ctrl.getVoter();
-            if (v != null) {
-                model.updateVoter(v);
-                listVoters.setAll(model.votersObs());
+        if(tblCandidates.getSelectionModel().getSelectedItem()!=null){
+            Candidate candidate = (Candidate) tblCandidates.getSelectionModel().getSelectedItem();
+            if (candidate == null)
+            {
+                Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
+                upozorenje.setTitle("Error");
+                upozorenje.setHeaderText("You have to select item before performing this action!");
+                Optional<ButtonType> result = upozorenje.showAndWait();
+                return;
             }
 
-        } );
 
-    }
-    public void deleteVoterAction(ActionEvent actionEvent) {
-        Voter voter = (Voter) tableViewVoters.getSelectionModel().getSelectedItem();
-        if (voter == null)
-        {
             Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
-            upozorenje.setTitle("Error");
-            upozorenje.setHeaderText("You have to select item before performing this action!");
+            upozorenje.setTitle("Confirmation");
+            upozorenje.setHeaderText("Delete?");
             Optional<ButtonType> result = upozorenje.showAndWait();
-            return;
+
+            if(result.get() == ButtonType.OK)
+            {
+                model.deleteCandidate(candidate.getId());
+                listCandidates.setAll(model.candidatesObs());
+            }
+        }
+        if(tblParties.getSelectionModel().getSelectedItem()!=null){
+            PoliticalParty party = (PoliticalParty) tblParties.getSelectionModel().getSelectedItem();
+            if (party == null)
+            {
+                Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
+                upozorenje.setTitle("Error");
+                upozorenje.setHeaderText("You have to select item before performing this action!");
+                Optional<ButtonType> result = upozorenje.showAndWait();
+                return;
+            }
+
+
+            Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
+            upozorenje.setTitle("Confirmation");
+            upozorenje.setHeaderText("Delete?");
+            Optional<ButtonType> result = upozorenje.showAndWait();
+
+            if(result.get() == ButtonType.OK)
+            {
+                model.deleteParty(party.getId());
+                listPrties.setAll(model.partiesObs());
+            }
         }
 
-        Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
-        upozorenje.setTitle("Confirmation");
-        upozorenje.setHeaderText("Delete?");
-        Optional<ButtonType> result = upozorenje.showAndWait();
+        if(tableViewVoters.getSelectionModel().getSelectedItem()!=null){
+            Voter voter = (Voter) tableViewVoters.getSelectionModel().getSelectedItem();
+            if (voter == null)
+            {
+                Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
+                upozorenje.setTitle("Error");
+                upozorenje.setHeaderText("You have to select item before performing this action!");
+                Optional<ButtonType> result = upozorenje.showAndWait();
+                return;
+            }
 
-        if(result.get() == ButtonType.OK)
-        {
-            model.deleteVoter(voter.getPassword());
-            listVoters.setAll(model.votersObs());
+            Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
+            upozorenje.setTitle("Confirmation");
+            upozorenje.setHeaderText("Delete?");
+            Optional<ButtonType> result = upozorenje.showAndWait();
+
+            if(result.get() == ButtonType.OK)
+            {
+                model.deleteVoter(voter.getPassword());
+                listVoters.setAll(model.votersObs());
+            }
         }
+
+        if(tblCEC.getSelectionModel().getSelectedItem()!=null){
+            CECMember member = (CECMember) tblCEC.getSelectionModel().getSelectedItem();
+
+            if(member==null)
+            {
+                Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
+                upozorenje.setTitle("Error");
+                upozorenje.setHeaderText("You have to select item before performing this action!");
+                Optional<ButtonType> result = upozorenje.showAndWait();
+                return;
+            }
+
+
+            Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
+            upozorenje.setTitle("Confirmation");
+            upozorenje.setHeaderText("Delete?");
+            Optional<ButtonType> result = upozorenje.showAndWait();
+
+            if(result.get() == ButtonType.OK)
+            {
+                model.deleteCec(member.getCode());
+                listCECMembers.setAll(model.cecMembersObs());
+            }
+        }
+
+
     }
 
+    public void editAction(ActionEvent actionEvent){
 
+        if(tblCandidates.getSelectionModel().getSelectedItem()!=null){
+            Candidate candidate = (Candidate) tblCandidates.getSelectionModel().getSelectedItem();
+            if (candidate == null)
+            {
+                Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
+                upozorenje.setTitle("Error");
+                upozorenje.setHeaderText("You have to select item before performing this action!");
+                Optional<ButtonType> result = upozorenje.showAndWait();
+                return;
+            }
 
+            Stage stage = new Stage();
+            Parent root = null;
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/candidate-update.fxml"));
+            CandidateUpdateController ctrl = new CandidateUpdateController( model.candidatesObs(), candidate);
+            loader.setController(ctrl);
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene scene = new Scene(root);
+            stage.setTitle("Edit Candidate");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+
+            stage.setOnHiding( event -> {
+                Candidate c = ctrl.getCandidate();
+                if (c != null) {
+                    model.updateCandidate(c);
+                    listCandidates.setAll(model.candidatesObs());
+                }
+
+            } );
+        }
+        if(tblParties.getSelectionModel().getSelectedItem()!=null){
+            PoliticalParty party = (PoliticalParty) tblParties.getSelectionModel().getSelectedItem();
+            if (party == null)
+            {
+                Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
+                upozorenje.setTitle("Error");
+                upozorenje.setHeaderText("You have to select item before performing this action!");
+                Optional<ButtonType> result = upozorenje.showAndWait();
+                return;
+            }
+
+            Stage stage = new Stage();
+            Parent root = null;
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/party-update.fxml"));
+            PartyUpdateController ctrl = new PartyUpdateController( model.candidatesObs(), party);
+            loader.setController(ctrl);
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene scene = new Scene(root);
+            stage.setTitle("Edit Political Party");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+
+            stage.setOnHiding( event -> {
+                PoliticalParty p = ctrl.getParty();
+                if (p != null) {
+                    model.updateParty(p);
+                    listPrties.setAll(model.partiesObs());
+                }
+
+            } );
+        }
+        if(tableViewVoters.getSelectionModel().getSelectedItem()!=null){
+            Voter voter = (Voter) tableViewVoters.getSelectionModel().getSelectedItem();
+            if (voter == null)
+            {
+                Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
+                upozorenje.setTitle("Error");
+                upozorenje.setHeaderText("You have to select item before performing this action!");
+                Optional<ButtonType> result = upozorenje.showAndWait();
+                return;
+            }
+
+            Stage stage = new Stage();
+            Parent root = null;
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/voter-update.fxml"));
+            VoterUpdateController ctrl = new VoterUpdateController( model.votersObs(), voter);
+            loader.setController(ctrl);
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene scene = new Scene(root);
+            stage.setTitle("Edit Voter");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+
+            stage.setOnHiding( event -> {
+                Voter v = ctrl.getVoter();
+                if (v != null) {
+                    model.updateVoter(v);
+                    listVoters.setAll(model.votersObs());
+                }
+
+            } );
+        }
+
+        if(tblCEC.getSelectionModel().getSelectedItem()!=null){
+            CECMember member = (CECMember) tblCEC.getSelectionModel().getSelectedItem();
+            if (member == null)
+            {
+                Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
+                upozorenje.setTitle("Error");
+                upozorenje.setHeaderText("You have to select item before performing this action!");
+                Optional<ButtonType> result = upozorenje.showAndWait();
+                return;
+            }
+
+            Stage stage = new Stage();
+            Parent root = null;
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/cec-update.fxml"));
+            CECUpdateController ctrl = new CECUpdateController( model.cecMembersObs(), member);
+            loader.setController(ctrl);
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene scene = new Scene(root);
+            stage.setTitle("Edit CEC Member");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+
+            stage.setOnHiding( event -> {
+                CECMember m = ctrl.getMember();
+                if (m != null) {
+                    model.updateCec(m);
+                    listCECMembers.setAll(model.cecMembersObs());
+                }
+
+            } );
+        }
+
+    }
 
 
     public void addCandidateAction(ActionEvent actionEvent) {
@@ -323,68 +448,7 @@ public class AdminController {
         } );
 
     }
-    public void editCandidateAction(ActionEvent actionEvent) {
-       Candidate candidate = (Candidate) tblCandidates.getSelectionModel().getSelectedItem();
-        if (candidate == null)
-        {
-            Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
-            upozorenje.setTitle("Error");
-            upozorenje.setHeaderText("You have to select item before performing this action!");
-            Optional<ButtonType> result = upozorenje.showAndWait();
-            return;
-        }
 
-        Stage stage = new Stage();
-        Parent root = null;
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/candidate-update.fxml"));
-        CandidateUpdateController ctrl = new CandidateUpdateController( model.candidatesObs(), candidate);
-        loader.setController(ctrl);
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Scene scene = new Scene(root);
-        stage.setTitle("Edit Candidate");
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
-
-        stage.setOnHiding( event -> {
-            Candidate c = ctrl.getCandidate();
-            if (c != null) {
-                model.updateCandidate(c);
-                listCandidates.setAll(model.candidatesObs());
-            }
-
-        } );
-    }
-
-    public void deleteCandidateAction(ActionEvent actionEvent) {
-        Candidate candidate = (Candidate) tblCandidates.getSelectionModel().getSelectedItem();
-        if (candidate == null)
-        {
-            Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
-            upozorenje.setTitle("Error");
-            upozorenje.setHeaderText("You have to select item before performing this action!");
-            Optional<ButtonType> result = upozorenje.showAndWait();
-            return;
-        }
-
-
-        Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
-        upozorenje.setTitle("Confirmation");
-        upozorenje.setHeaderText("Delete?");
-        Optional<ButtonType> result = upozorenje.showAndWait();
-
-        if(result.get() == ButtonType.OK)
-        {
-            model.deleteCandidate(candidate.getId());
-            listCandidates.setAll(model.candidatesObs());
-        }
-
-    }
 
     public void addPartyAction(ActionEvent actionEvent) {
         Stage stage = new Stage();
@@ -414,73 +478,6 @@ public class AdminController {
         } );
 
     }
-
-
-    public void editPartyAction(ActionEvent actionEvent) {
-        PoliticalParty party = (PoliticalParty) tblParties.getSelectionModel().getSelectedItem();
-        if (party == null)
-        {
-            Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
-            upozorenje.setTitle("Error");
-            upozorenje.setHeaderText("You have to select item before performing this action!");
-            Optional<ButtonType> result = upozorenje.showAndWait();
-            return;
-        }
-
-        Stage stage = new Stage();
-        Parent root = null;
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/party-update.fxml"));
-        PartyUpdateController ctrl = new PartyUpdateController( model.candidatesObs(), party);
-        loader.setController(ctrl);
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Scene scene = new Scene(root);
-        stage.setTitle("Edit Political Party");
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
-
-        stage.setOnHiding( event -> {
-            PoliticalParty p = ctrl.getParty();
-            if (p != null) {
-                model.updateParty(p);
-                listPrties.setAll(model.partiesObs());
-            }
-
-        } );
-
-    }
-
-
-    public void deletePartyAction(ActionEvent actionEvent) {
-        PoliticalParty party = (PoliticalParty) tblParties.getSelectionModel().getSelectedItem();
-        if (party == null)
-        {
-            Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
-            upozorenje.setTitle("Error");
-            upozorenje.setHeaderText("You have to select item before performing this action!");
-            Optional<ButtonType> result = upozorenje.showAndWait();
-            return;
-        }
-
-
-        Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
-        upozorenje.setTitle("Confirmation");
-        upozorenje.setHeaderText("Delete?");
-        Optional<ButtonType> result = upozorenje.showAndWait();
-
-        if(result.get() == ButtonType.OK)
-        {
-            model.deleteParty(party.getId());
-            listPrties.setAll(model.partiesObs());
-        }
-    }
-
-
 
 
     public void exitAction(ActionEvent actionEvent) {
