@@ -63,7 +63,7 @@ public class MainController{
 
         for(int i=0; i< listVoters.size(); i++)
         {
-            System.out.println(listVoters.get(i));
+            System.out.println(listVoters.get(i).getBadge());
             if(fieldUsername.getText().equals(listVoters.get(i).getEmail()) && fieldPassword.getText().equals(listVoters.get(i).getPassword())){
                 flag=true;
                 voter = listVoters.get(i);
@@ -98,15 +98,6 @@ public class MainController{
             Stage currentStage = (Stage) fieldUsername.getScene().getWindow();
             currentStage.close();
         }
-        if(flag == false)
-        {
-            Alert upozorenje = new Alert(Alert.AlertType.CONFIRMATION);
-            upozorenje.setTitle("Sorry...");
-            upozorenje.setHeaderText("You are not registered");
-            Optional<ButtonType> result = upozorenje.showAndWait();
-            return;
-        }
-
 
     }
 }

@@ -59,6 +59,9 @@ public class VotingPage2Controller {
         }
 
         model.addVote(new VotingForm(0,party.getName(), selectedCandidates));
+        voter.setBadge("/jpg/IVotedSticker.jpg");
+        model.setBadge(voter);
+
         Stage currentStage = (Stage) listViewCandidates.getScene().getWindow();
         currentStage.close();
 

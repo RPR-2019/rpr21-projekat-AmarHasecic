@@ -2,19 +2,32 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <Label fx:id="lblHello" text="Hello -name-" textFill="#363636" BorderPane.alignment="CENTER">
-         <padding>
-            <Insets top="20.0" />
-         </padding>
-         <font>
-            <Font name="Gidugu" size="40.0" />
-         </font>
-      </Label>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lblHello" text="Hello -name-" textFill="#363636">
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+               <font>
+                  <Font name="Gidugu" size="40.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </Label>
+            <ImageView fx:id="imgViewSticker" fitHeight="86.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="20.0" top="10.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
    </top>
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
@@ -22,7 +35,7 @@
             <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text=" Welcome.&#10;&#10;  This is an app for Voting on Elections.&#10;  When you press &quot;Start voting&quot; new window will pop up.&#10;  There, you select Political Party or Candidate and click on next.&#10;  In the end, if you want to, you can view your voting sheet.&#10;  When you finish, you will get a badge &quot;I voted&quot; and you can not vote again.&#10;&#10;" />
             <ButtonBar prefHeight="109.0" prefWidth="400.0">
               <buttons>
-                <Button mnemonicParsing="false" onAction="#startVotingAction" text="Start voting">
+                <Button fx:id="btnStart" mnemonicParsing="false" onAction="#startVotingAction" text="Start voting">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>

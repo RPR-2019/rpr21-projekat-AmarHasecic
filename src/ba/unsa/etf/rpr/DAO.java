@@ -16,7 +16,7 @@ public class DAO {
     private PreparedStatement allVotersQuery, allCecMembersQuery, allPoliticalParties, allCandidatesQuery,
     addCECQuery, editCECQuery, deleteCECQuery, newIdCECQuery,addVoterQuery, editVoterQuery, deleteVoterQuery,
     addCandidateQuery, editCandidateQuery, deleteCandidateQuery, newIdCandidateQuery, addPartyQuery, editPartyQuery, deletePartyQuery, newIdPartyQuery,
-    addVoteQuery, deleteVoteQuery, allCandidatesFromParty, newVoteId, updateVoteQuerry;
+    addVoteQuery, deleteVoteQuery, allCandidatesFromParty, newVoteId, updateVoteQuerry, addBadgeQuery;
     ;
 
     public DAO() {
@@ -57,6 +57,7 @@ public class DAO {
             newVoteId = conn.prepareStatement("SELECT MAX(id)+1 FROM voting_sheets");
 
             updateVoteQuerry = conn.prepareStatement("UPDATE Candidates SET numberOfVotes=? WHERE id=?");
+            addBadgeQuery = conn.prepareStatement("UPDATE Voters SET badge=? WHERE id_pass=?");
 
 
         }
@@ -84,6 +85,8 @@ public class DAO {
             while (rs.next()) {
                 Voter voter = new Voter(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5),
                         rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
+                if(rs.getString(11)!=null)
+                voter.setBadge(rs.getString(11));
                 output.add(voter);
             }
 
@@ -456,6 +459,17 @@ public class DAO {
             e.printStackTrace();
         }
     }
+    void setBadge(Voter voter)
+    {
+        try {
+            addBadgeQuery.setString(1, voter.getBadge());
+            addBadgeQuery.setString(2, voter.getPassword());
+            addBadgeQuery.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 
