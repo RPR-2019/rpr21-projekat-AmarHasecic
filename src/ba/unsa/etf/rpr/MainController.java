@@ -119,7 +119,7 @@ public class MainController{
             Parent root = null;
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/cec-member.fxml"));
-            CECController ctrl = new CECController(model.candidatesObs());
+            CECController ctrl = new CECController();
             loader.setController(ctrl);
             try {
                 root = loader.load();

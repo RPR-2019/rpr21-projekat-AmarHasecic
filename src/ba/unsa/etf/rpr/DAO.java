@@ -16,7 +16,7 @@ public class DAO {
     private PreparedStatement allVotersQuery, allCecMembersQuery, allPoliticalParties, allCandidatesQuery,
     addCECQuery, editCECQuery, deleteCECQuery, newIdCECQuery,addVoterQuery, editVoterQuery, deleteVoterQuery,
     addCandidateQuery, editCandidateQuery, deleteCandidateQuery, newIdCandidateQuery, addPartyQuery, editPartyQuery, deletePartyQuery, newIdPartyQuery,
-    addVoteQuery, deleteVoteQuery, allCandidatesFromParty, newVoteId, updateVoteQuerry, addBadgeQuery;
+    addVoteQuery, deleteVoteQuery, allCandidatesFromParty, newVoteId, updateVoteQuerry, addBadgeQuery, sortCandidatesQuery;
     ;
 
     public DAO() {
@@ -58,6 +58,7 @@ public class DAO {
 
             updateVoteQuerry = conn.prepareStatement("UPDATE Candidates SET numberOfVotes=? WHERE id=?");
             addBadgeQuery = conn.prepareStatement("UPDATE Voters SET badge=? WHERE id_pass=?");
+            sortCandidatesQuery = conn.prepareStatement("SELECT * FROM Candidates ORDER BY numberOfVotes DESC");
 
 
         }
@@ -187,8 +188,6 @@ public class DAO {
         return output;
     }
 
-
-    
 
     public static DAO getInstance() {
         if (instance == null) instance = new DAO();
@@ -469,6 +468,26 @@ public class DAO {
             e.printStackTrace();
         }
     }
+
+    public ObservableList<Candidate> getSortedCandidates() {
+        ObservableList<Candidate> output = FXCollections.observableArrayList();
+        try {
+
+            ResultSet rs = sortCandidatesQuery.executeQuery();
+
+            while (rs.next()) {
+                Candidate candidate = new Candidate(rs.getInt(1), rs.getInt(4),rs.getString(2), rs.getString(3));
+                candidate.setPoliticalPartyId(rs.getInt(5));
+                output.add(candidate);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
 
 
 

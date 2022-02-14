@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
@@ -18,14 +19,18 @@ public class CECController {
     boolean start;
     ObservableList candidates;
     public ListView listViewCandidates;
+    public DAO model;
 
-    public CECController(ObservableList candidates) {
+
+    public CECController() {
         start = false;
-        this.candidates = candidates;
+        model = DAO.getInstance();
+        candidates = FXCollections.observableArrayList(model.candidatesObs());
     }
 
     public void initialize()
     {
+
         listViewCandidates.setItems(candidates);
     }
 
@@ -38,7 +43,8 @@ public class CECController {
     }
 
     public void refreshAction(ActionEvent actionEvent){
-
+        candidates = FXCollections.observableArrayList(model.getSortedCandidates());
+        listViewCandidates.setItems(candidates);
     }
 
     public void printReportAction(ActionEvent actionEvent){
