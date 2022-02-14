@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
 
@@ -54,6 +55,11 @@ public class CECController {
     }
 
     public void printReportAction(ActionEvent actionEvent){
+            try {
+                new Report().showReport(model.getConn());
+            } catch (JRException e1) {
+                e1.printStackTrace();
+            }
 
     }
 
