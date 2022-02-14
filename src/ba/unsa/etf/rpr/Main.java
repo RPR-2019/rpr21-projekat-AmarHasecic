@@ -19,7 +19,7 @@ public class Main extends Application {
         DAO dao = DAO.getInstance();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
-        ctrl = new MainController();
+        ctrl = new MainController(false);
         loader.setController(ctrl);
         Parent root = loader.load();
         stage.setScene(new Scene(root));

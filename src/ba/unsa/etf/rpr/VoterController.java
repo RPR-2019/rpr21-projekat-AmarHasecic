@@ -73,7 +73,7 @@ public class VoterController {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
         MainController ctrl;
-        ctrl = new MainController();
+        ctrl = new MainController(true);
 
         loader.setController(ctrl);
         try {

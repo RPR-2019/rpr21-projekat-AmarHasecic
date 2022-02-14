@@ -21,13 +21,15 @@ public class MainController{
     public DAO model;
     public ObservableList<Voter> listVoters;
     public ObservableList<CECMember> cecMembers;
+    private boolean start;
 
 
 
-    public MainController() {
+    public MainController(boolean start) {
         model = DAO.getInstance();
         listVoters = FXCollections.observableArrayList(model.voters());
         cecMembers = FXCollections.observableArrayList(model.cecMembersObs());
+        this.start=start;
     }
 
     public void initialize() {
@@ -37,68 +39,70 @@ public class MainController{
 
     public void loginAction(ActionEvent actionEvent) {
 
-        if(fieldUsername.getText().equals("admin") && fieldPassword.getText().equals("admin"))
-        {
-            Stage stage = new Stage();
-            Parent root = null;
+        if(start==false) {
+            if (fieldUsername.getText().equals("admin") && fieldPassword.getText().equals("admin")) {
+                Stage stage = new Stage();
+                Parent root = null;
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin.fxml"));
-            AdminController ctrl = new AdminController();
-            loader.setController(ctrl);
-            try {
-            root = loader.load();
-            } catch (IOException e) {
-            e.printStackTrace();
-            }
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin.fxml"));
+                AdminController ctrl = new AdminController();
+                loader.setController(ctrl);
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setMaximized(true);
-            stage.show();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setMaximized(true);
+                stage.show();
 
-            Stage currentStage = (Stage) fieldUsername.getScene().getWindow();
-            currentStage.close();
-        }
-
-        boolean flagVoter = false;
-        Voter voter = null;
-
-        for(int i=0; i< listVoters.size(); i++)
-        {
-            System.out.println(listVoters.get(i).getBadge());
-            if(fieldUsername.getText().equals(listVoters.get(i).getEmail()) && fieldPassword.getText().equals(listVoters.get(i).getPassword())){
-                flagVoter=true;
-                voter = listVoters.get(i);
-                break;
-            }
-
-            if(fieldUsername.getText().equals(listVoters.get(i).getUsername()) && fieldPassword.getText().equals(listVoters.get(i).getPassword())){
-                flagVoter=true;
-                voter = listVoters.get(i);
-                break;
+                Stage currentStage = (Stage) fieldUsername.getScene().getWindow();
+                currentStage.close();
             }
         }
 
-        if(flagVoter==true){
-            Stage stage = new Stage();
-            Parent root = null;
+        if(start==true) {
+            boolean flagVoter = false;
+            Voter voter = null;
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/voterMainPage.fxml"));
-            VoterController ctrl = new VoterController(voter);
-            loader.setController(ctrl);
-            try {
-                root = loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
+            for (int i = 0; i < listVoters.size(); i++) {
+                System.out.println(listVoters.get(i).getBadge());
+                if (fieldUsername.getText().equals(listVoters.get(i).getEmail()) && fieldPassword.getText().equals(listVoters.get(i).getPassword())) {
+                    flagVoter = true;
+                    voter = listVoters.get(i);
+                    break;
+                }
+
+                if (fieldUsername.getText().equals(listVoters.get(i).getUsername()) && fieldPassword.getText().equals(listVoters.get(i).getPassword())) {
+                    flagVoter = true;
+                    voter = listVoters.get(i);
+                    break;
+                }
             }
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setTitle("Welcome page");
-            stage.show();
+            if (flagVoter == true) {
+                Stage stage = new Stage();
+                Parent root = null;
 
-            Stage currentStage = (Stage) fieldUsername.getScene().getWindow();
-            currentStage.close();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/voterMainPage.fxml"));
+                VoterController ctrl = new VoterController(voter);
+                loader.setController(ctrl);
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setTitle("Welcome page");
+                stage.show();
+
+                Stage currentStage = (Stage) fieldUsername.getScene().getWindow();
+                currentStage.close();
+            }
         }
 
         boolean flagCec = false;
@@ -119,7 +123,7 @@ public class MainController{
             Parent root = null;
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/cec-member.fxml"));
-            CECController ctrl = new CECController();
+            CECController ctrl = new CECController(start);
             loader.setController(ctrl);
             try {
                 root = loader.load();
@@ -131,6 +135,10 @@ public class MainController{
             stage.setScene(scene);
             stage.setTitle("Statistics");
             stage.show();
+
+            stage.setOnHiding( event -> {
+               this.start = ctrl.isStart();
+            } );
 
             Stage currentStage = (Stage) fieldUsername.getScene().getWindow();
             currentStage.close();

@@ -487,7 +487,7 @@ public class AdminController {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
         MainController ctrl;
-        ctrl = new MainController();
+        ctrl = new MainController(false);
 
         loader.setController(ctrl);
         try {

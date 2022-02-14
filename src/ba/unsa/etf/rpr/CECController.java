@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,18 +21,22 @@ public class CECController {
     ObservableList candidates;
     public ListView listViewCandidates;
     public DAO model;
+    public ToggleButton tglBtn;
 
 
-    public CECController() {
-        start = false;
+    public CECController(boolean start) {
+
         model = DAO.getInstance();
         candidates = FXCollections.observableArrayList(model.candidatesObs());
+        this.start=start;
+
     }
 
     public void initialize()
     {
 
         listViewCandidates.setItems(candidates);
+        if(start==true) tglBtn.setSelected(true);
     }
 
     public boolean isStart() {
@@ -52,6 +57,8 @@ public class CECController {
     }
 
     public void startStopAction(ActionEvent actionEvent){
+          if(tglBtn.isSelected()) start=true;
+          else start = false;
 
     }
 
@@ -62,8 +69,7 @@ public class CECController {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
         MainController ctrl;
-        ctrl = new MainController();
-
+        ctrl = new MainController(start);
         loader.setController(ctrl);
         try {
             root = loader.load();

@@ -33,7 +33,7 @@
                         <Insets top="10.0" />
                      </HBox.margin>
                   </Label>
-                  <ToggleButton mnemonicParsing="false" onAction="#startStopAction" prefHeight="65.0" prefWidth="99.0" text="Start/Stop">
+                  <ToggleButton fx:id="tglBtn" mnemonicParsing="false" onAction="#startStopAction" prefHeight="65.0" prefWidth="99.0" text="Start/Stop">
                      <HBox.margin>
                         <Insets left="3.0" right="10.0" top="10.0" />
                      </HBox.margin>
