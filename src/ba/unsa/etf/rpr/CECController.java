@@ -36,7 +36,10 @@ public class CECController {
     {
 
         listViewCandidates.setItems(candidates);
-        if(start==true) tglBtn.setSelected(true);
+        if(start==true) {
+            tglBtn.setSelected(true);
+            tglBtn.setStyle(" -fx-background-color: green;");
+        }
     }
 
     public boolean isStart() {
@@ -57,8 +60,14 @@ public class CECController {
     }
 
     public void startStopAction(ActionEvent actionEvent){
-          if(tglBtn.isSelected()) start=true;
-          else start = false;
+          if(tglBtn.isSelected()){
+              tglBtn.setStyle(" -fx-background-color: green;");
+              start=true;
+          }
+          else{
+              tglBtn.setStyle(" -fx-background-color: white;");
+              start = false;
+          }
 
     }
 
