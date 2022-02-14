@@ -20,12 +20,14 @@ public class MainController{
     public TextField fieldPassword;
     public DAO model;
     public ObservableList<Voter> listVoters;
+    public ObservableList<CECMember> cecMembers;
 
 
 
     public MainController() {
         model = DAO.getInstance();
         listVoters = FXCollections.observableArrayList(model.voters());
+        cecMembers = FXCollections.observableArrayList(model.cecMembersObs());
     }
 
     public void initialize() {
@@ -58,26 +60,26 @@ public class MainController{
             currentStage.close();
         }
 
-        boolean flag = false;
+        boolean flagVoter = false;
         Voter voter = null;
 
         for(int i=0; i< listVoters.size(); i++)
         {
             System.out.println(listVoters.get(i).getBadge());
             if(fieldUsername.getText().equals(listVoters.get(i).getEmail()) && fieldPassword.getText().equals(listVoters.get(i).getPassword())){
-                flag=true;
+                flagVoter=true;
                 voter = listVoters.get(i);
                 break;
             }
 
             if(fieldUsername.getText().equals(listVoters.get(i).getUsername()) && fieldPassword.getText().equals(listVoters.get(i).getPassword())){
-                flag=true;
+                flagVoter=true;
                 voter = listVoters.get(i);
                 break;
             }
         }
 
-        if(flag==true){
+        if(flagVoter==true){
             Stage stage = new Stage();
             Parent root = null;
 
@@ -99,5 +101,41 @@ public class MainController{
             currentStage.close();
         }
 
+        boolean flagCec = false;
+        CECMember member = null;
+
+        for(int i=0; i<cecMembers.size(); i++)
+        {
+
+            if(fieldUsername.getText().equals(cecMembers.get(i).getUsername()) && Integer.parseInt(fieldPassword.getText())==(cecMembers.get(i).getCode())){
+                flagCec=true;
+                member = cecMembers.get(i);
+                break;
+            }
+        }
+
+        if(flagCec==true){
+            Stage stage = new Stage();
+            Parent root = null;
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/cec-member.fxml"));
+            CECController ctrl = new CECController(model.candidatesObs());
+            loader.setController(ctrl);
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Statistics");
+            stage.show();
+
+            Stage currentStage = (Stage) fieldUsername.getScene().getWindow();
+            currentStage.close();
+        }
+
     }
+
 }
