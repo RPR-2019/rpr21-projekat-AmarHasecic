@@ -1,6 +1,5 @@
 package ba.unsa.etf.rpr;
 
-import com.sun.scenario.effect.Effect;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
