@@ -8,7 +8,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <HBox BorderPane.alignment="CENTER">
+      <HBox prefHeight="80.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="lblHello" text="Hello -name-" textFill="#363636">
                <padding>
@@ -23,7 +23,7 @@
             </Label>
             <ImageView fx:id="imgViewSticker" fitHeight="86.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
-                  <Insets left="20.0" top="10.0" />
+                  <Insets left="300.0" top="10.0" />
                </HBox.margin>
             </ImageView>
          </children>

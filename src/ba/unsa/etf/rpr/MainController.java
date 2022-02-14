@@ -95,6 +95,7 @@ public class MainController{
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.setTitle("Welcome page");
+                stage.setResizable(false);
                 stage.show();
 
                 Stage currentStage = (Stage) fieldUsername.getScene().getWindow();
