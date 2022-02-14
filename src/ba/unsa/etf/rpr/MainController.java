@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -36,8 +37,9 @@ public class MainController{
 
     public void loginAction(ActionEvent actionEvent) {
 
-        if(start==false) {
+
             if (fieldUsername.getText().equals("admin") && fieldPassword.getText().equals("admin")) {
+                if(start==false) {
                 Stage stage = new Stage();
                 Parent root = null;
 
@@ -58,9 +60,15 @@ public class MainController{
                 Stage currentStage = (Stage) fieldUsername.getScene().getWindow();
                 currentStage.close();
             }
+                else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Can't enter now.");
+                    alert.setContentText("Elections started. Admin entry denied.");
+                    alert.showAndWait();
+                }
         }
 
-        if(start==true) {
+
             boolean flagVoter = false;
             Voter voter = null;
 
@@ -80,6 +88,8 @@ public class MainController{
             }
 
             if (flagVoter == true) {
+
+                if(start==true) {
                 Stage stage = new Stage();
                 Parent root = null;
 
@@ -101,6 +111,12 @@ public class MainController{
                 Stage currentStage = (Stage) fieldUsername.getScene().getWindow();
                 currentStage.close();
             }
+                else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Can't vote now.");
+                    alert.setContentText("You will be able to vote when elections start ");
+                    alert.showAndWait();
+                }
         }
 
         boolean flagCec = false;
