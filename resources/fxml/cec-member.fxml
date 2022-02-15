@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="704.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <left>
-      <VBox prefHeight="400.0" prefWidth="157.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="457.0" prefWidth="157.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="157.0" text="Options">
+            <Label alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="57.0" prefWidth="157.0" text="Options">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -24,35 +24,48 @@
       </VBox>
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="432.0" prefWidth="566.0" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label prefHeight="69.0" prefWidth="358.0" text="Start elections: Voters will be able to login and vote. &#10;                         Admin can not log in.&#10;&#10;Stop elections: Admin can log in, voters can't.">
+                  <Label prefHeight="90.0" prefWidth="411.0" text="Start elections: Voters will be able to login and vote. &#10;                         Admin can not log in.&#10;&#10;Stop elections: Admin can log in, voters can't.">
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin>
                   </Label>
-                  <ToggleButton fx:id="tglBtn" mnemonicParsing="false" onAction="#startStopAction" prefHeight="65.0" prefWidth="99.0" text="Start/Stop">
+                  <ToggleButton fx:id="tglBtn" mnemonicParsing="false" onAction="#startStopAction" prefHeight="90.0" prefWidth="101.0" text="Start/Stop">
                      <HBox.margin>
                         <Insets left="3.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </ToggleButton>
                </children>
             </HBox>
-            <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="74.0" prefWidth="441.0" text="Liderboard">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <padding>
-                  <Insets bottom="2.0" />
-               </padding>
-            </Label>
-            <ListView fx:id="listViewCandidates" prefHeight="297.0" prefWidth="445.0">
+            <HBox prefWidth="445.0">
+               <children>
+                  <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="74.0" prefWidth="503.0" text="Liderboard">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="2.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="45.0" prefWidth="455.0">
+               <children>
+                  <Label alignment="BOTTOM_CENTER" prefHeight="39.0" prefWidth="275.0" text="Candidates" />
+                  <Label alignment="BOTTOM_CENTER" prefHeight="39.0" prefWidth="229.0" text="Political Paries" />
+               </children></HBox>
+            <HBox>
                <VBox.margin>
                   <Insets bottom="5.0" right="5.0" />
                </VBox.margin>
-            </ListView>
+               <children>
+                  <ListView fx:id="listViewCandidates" prefHeight="195.0" prefWidth="262.0" />
+                  <ListView fx:id="partiesList" prefHeight="195.0" prefWidth="254.0" />
+               </children>
+            </HBox>
          </children>
       </VBox>
    </center>
