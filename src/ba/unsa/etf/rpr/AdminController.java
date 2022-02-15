@@ -527,6 +527,25 @@ public class AdminController {
     }
 
     public void factoryActions(ActionEvent actionEvent){
+        Stage stage = new Stage();
+        Parent root = null;
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/factory-settings.fxml"));
+        FactorySettingsController ctrl = new FactorySettingsController();
+        loader.setController(ctrl);
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Factory settings");
+        stage.setResizable(false);
+        stage.show();
+
+
 
     }
 
