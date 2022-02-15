@@ -526,4 +526,8 @@ public class AdminController {
 
     }
 
+    public void factoryActions(ActionEvent actionEvent){
+
+    }
+
 }

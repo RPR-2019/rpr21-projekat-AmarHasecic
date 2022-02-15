@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <expandableContent>
+      <Button mnemonicParsing="false" text="Button" />
+   </expandableContent>
+   <content>
+      <ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="441.0">
+        <buttons>
+          <Button alignment="CENTER" mnemonicParsing="false" text="Delete all date" />
+            <Button mnemonicParsing="false" text="Return to test settings" />
+        </buttons>
+         <padding>
+            <Insets right="55.0" />
+         </padding>
+      </ButtonBar>
+   </content>
+   <header>
+      <Pane prefHeight="177.0" prefWidth="447.0">
+         <children>
+            <Label alignment="CENTER" layoutY="40.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="110.0" prefWidth="480.0" text="What do you want to do?" />
+         </children>
+      </Pane>
+   </header>
+</DialogPane>
