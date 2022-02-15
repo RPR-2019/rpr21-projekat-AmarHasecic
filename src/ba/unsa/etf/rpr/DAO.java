@@ -247,6 +247,45 @@ public class DAO {
         createDatabase();
     }
 
+    public void setDefaultDatabaseTest() {
+        Statement stmt = null;
+        try {
+            stmt = conn.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            stmt.executeUpdate("DELETE FROM voters");
+            stmt.executeUpdate("DELETE FROM cecmembers");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        createDatabaseTest();
+    }
+
+    private void createDatabaseTest() {
+        Scanner ulaz = null;
+        try {
+            ulaz = new Scanner(new FileInputStream("bazaTest.db.sql"));
+            String sqlUpit = "";
+            while (ulaz.hasNext()) {
+                sqlUpit += ulaz.nextLine();
+                if (sqlUpit.charAt(sqlUpit.length() - 1) == ';') {
+                    try {
+                        Statement stmt = conn.createStatement();
+                        stmt.execute(sqlUpit);
+                        sqlUpit = "";
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            ulaz.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Connection getConn() {
         return conn;
     }

@@ -8,8 +8,8 @@
    <content>
       <ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="441.0">
         <buttons>
-          <Button alignment="CENTER" mnemonicParsing="false" text="Delete all date" />
-            <Button mnemonicParsing="false" text="Return to test settings" />
+          <Button alignment="CENTER" mnemonicParsing="false" onAction="#deleteDataAction" text="Delete all date" />
+            <Button mnemonicParsing="false" onAction="#testSettingsAction" text="Return to test settings" />
         </buttons>
          <padding>
             <Insets right="55.0" />
