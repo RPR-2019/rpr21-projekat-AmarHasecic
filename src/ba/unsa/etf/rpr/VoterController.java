@@ -58,6 +58,7 @@ public class VoterController {
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        scene.getStylesheets().add(this.getClass().getResource("/css/list.css").toExternalForm());
         stage.setTitle("Choose Political Party");
         stage.show();
 

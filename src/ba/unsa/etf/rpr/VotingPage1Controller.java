@@ -45,7 +45,10 @@ public class VotingPage1Controller {
         }
 
         Scene scene = new Scene(root);
+
+        scene.getStylesheets().add(this.getClass().getResource("/css/list.css").toExternalForm());
         stage.setScene(scene);
+
         stage.setTitle("Choose Candidates");
         stage.show();
 

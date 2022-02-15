@@ -6,10 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -72,7 +69,7 @@ public class VotingPage2Controller {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Pay attention");
-        alert.setContentText("If youur choice will be deleted because you can only vote for candidates from one Political Party.\n Are you sure you want to go back?");
+        alert.setContentText("If you go back, your choice will be deleted because you can only vote for candidates from one Political Party.\n Are you sure you want to go back?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
@@ -102,27 +99,38 @@ public class VotingPage2Controller {
 
     }
 
+    public Cell getListCell(ListView list, int index){
+        Object[]cells = list.lookupAll(".cell").toArray();
+        return (Cell)cells[index];
+    }
+
     public void chooseAction(ActionEvent actionEvent){
 
         Candidate candidate = (Candidate)listViewCandidates.getSelectionModel().getSelectedItem();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
-        alert.setHeaderText("Woting for "+candidate.toString());
+        alert.setHeaderText("Voting for "+candidate.toString());
         alert.setContentText("Are you sure you want to give your vote to " +candidate.toString()+"?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            selectedCandidates.add(candidate);
+            getListCell(listViewCandidates, listViewCandidates.getSelectionModel().getSelectedIndex()).setStyle("  -fx-font-family: \"Helvetica\";\n" +
+                    "    -fx-font-weight: bold;");
 
-            for(int i=0; i< candidates.size();i++)
-            {
-                if(candidates.get(i).getId() == candidate.getId())
-                {
-                    candidates.remove(candidate);
-                }
-            }
+            selectedCandidates.add(candidate);
         }
+
+    }
+
+    public void unselectAction(ActionEvent actionEvent){
+        Candidate candidate = (Candidate)listViewCandidates.getSelectionModel().getSelectedItem();
+
+            getListCell(listViewCandidates, listViewCandidates.getSelectionModel().getSelectedIndex()).setStyle("  -fx-font-family: \"Helvetica\";\n" +
+                    "    -fx-font-style: normal;");
+
+            selectedCandidates.remove(candidate);
+
 
     }
 
@@ -139,7 +147,6 @@ public class VotingPage2Controller {
         }
 
     }
-
 
 
 }
