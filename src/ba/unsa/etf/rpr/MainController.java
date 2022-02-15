@@ -148,6 +148,7 @@ public class MainController{
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setTitle("Statistics");
+            stage.setResizable(false);
             stage.show();
 
             stage.setOnHiding( event -> {

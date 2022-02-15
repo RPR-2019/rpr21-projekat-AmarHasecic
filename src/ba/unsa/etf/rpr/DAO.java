@@ -16,7 +16,7 @@ public class DAO {
     private PreparedStatement allVotersQuery, allCecMembersQuery, allPoliticalParties, allCandidatesQuery,
     addCECQuery, editCECQuery, deleteCECQuery, newIdCECQuery,addVoterQuery, editVoterQuery, deleteVoterQuery,
     addCandidateQuery, editCandidateQuery, deleteCandidateQuery, newIdCandidateQuery, addPartyQuery, editPartyQuery, deletePartyQuery, newIdPartyQuery,
-    addVoteQuery, deleteVoteQuery, allCandidatesFromParty, newVoteId, updateVoteQuerry, addBadgeQuery, sortCandidatesQuery;
+    addVoteQuery, deleteVoteQuery, allCandidatesFromParty, newVoteId, updateVoteQuerry, addBadgeQuery, sortCandidatesQuery, sortPartiesQuery;
     ;
 
     public DAO() {
@@ -59,6 +59,9 @@ public class DAO {
             updateVoteQuerry = conn.prepareStatement("UPDATE Candidates SET numberOfVotes=? WHERE id=?");
             addBadgeQuery = conn.prepareStatement("UPDATE Voters SET badge=? WHERE id_pass=?");
             sortCandidatesQuery = conn.prepareStatement("SELECT * FROM Candidates ORDER BY numberOfVotes DESC");
+            sortPartiesQuery = conn.prepareStatement("SELECT p.id,p.name, sum(c.numberOfVotes) s " +
+                                                         "FROM PoliticalParties p, Candidates c " +
+                    "                                     WHERE p.id=c.political_party GROUP BY p.id ORDER BY s DESC");
 
 
         }
@@ -531,6 +534,25 @@ public class DAO {
             e.printStackTrace();
         }
         return output;
+    }
+
+    public ObservableList<PoliticalParty> getSortedParties(){
+
+        ObservableList<PoliticalParty> output = FXCollections.observableArrayList();
+        try {
+                ResultSet rs = sortPartiesQuery.executeQuery();
+
+                while (rs.next()) {
+                    PoliticalParty party = new PoliticalParty(rs.getInt(1), rs.getString(2));
+                    output.add(party);
+                }
+
+
+            } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return output;
+
     }
 
 

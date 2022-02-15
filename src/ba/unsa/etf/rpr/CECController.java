@@ -18,7 +18,9 @@ public class CECController {
 
     boolean start;
     ObservableList candidates;
+    ObservableList parties;
     public ListView listViewCandidates;
+    public ListView listViewParties;
     public DAO model;
     public ToggleButton tglBtn;
 
@@ -27,6 +29,7 @@ public class CECController {
 
         model = DAO.getInstance();
         candidates = FXCollections.observableArrayList(model.candidatesObs());
+        parties =  FXCollections.observableArrayList(model.partiesObs());
         this.start=start;
 
     }
@@ -35,6 +38,7 @@ public class CECController {
     {
 
         listViewCandidates.setItems(candidates);
+        listViewParties.setItems(parties);
         if(start==true) {
             tglBtn.setSelected(true);
             tglBtn.setStyle(" -fx-background-color: green;");
@@ -51,6 +55,8 @@ public class CECController {
 
     public void refreshAction(ActionEvent actionEvent){
         candidates = FXCollections.observableArrayList(model.getSortedCandidates());
+        parties = FXCollections.observableArrayList(model.getSortedParties());
+        listViewParties.setItems(parties);
         listViewCandidates.setItems(candidates);
     }
 
@@ -69,7 +75,7 @@ public class CECController {
               start=true;
           }
           else{
-              tglBtn.setStyle(" -fx-background-color: white;");
+              tglBtn.setStyle(" -fx-background-color: #D3D3D3;");
               start = false;
           }
 

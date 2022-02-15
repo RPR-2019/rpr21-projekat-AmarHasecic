@@ -63,7 +63,7 @@
                </VBox.margin>
                <children>
                   <ListView fx:id="listViewCandidates" prefHeight="195.0" prefWidth="262.0" />
-                  <ListView fx:id="partiesList" prefHeight="195.0" prefWidth="254.0" />
+                  <ListView fx:id="listViewParties" prefHeight="195.0" prefWidth="254.0" />
                </children>
             </HBox>
          </children>
