@@ -28,7 +28,7 @@
                         <Insets left="10.0" top="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button fx:id="searchAction" mnemonicParsing="false" text="Search">
+                  <Button mnemonicParsing="false" onAction="#searchAction" text="Search">
                      <HBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </HBox.margin>

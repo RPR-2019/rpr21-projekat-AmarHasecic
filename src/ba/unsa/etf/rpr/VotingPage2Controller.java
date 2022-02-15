@@ -10,7 +10,9 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 
 public class VotingPage2Controller {
@@ -38,6 +40,10 @@ public class VotingPage2Controller {
 
 
     public void finishAction(ActionEvent actionEvent){
+        Set<Candidate> set = new HashSet<>(selectedCandidates);
+        selectedCandidates.clear();
+        selectedCandidates.addAll(set);
+
         if(selectedCandidates.isEmpty())
         {
             for(int i=0; i<candidates.size();i++)
