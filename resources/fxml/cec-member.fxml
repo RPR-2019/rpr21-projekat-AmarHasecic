@@ -19,7 +19,7 @@
             </Label>
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#refreshAction" prefHeight="39.0" prefWidth="157.0" stylesheets="@../css/button.css" text="Refresh" />
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printReportAction" prefHeight="40.0" prefWidth="157.0" stylesheets="@../css/button.css" text="Prints report" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#exitAction" prefHeight="40.0" prefWidth="157.0" stylesheets="@../css/button.css" text="Log out" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#exitAction" prefHeight="40.0" prefWidth="157.0" stylesheets="@../css/button.css" text="Sign Out" />
          </children>
       </VBox>
    </left>

@@ -20,7 +20,7 @@
                   <MenuItem onAction="#editAction" text="_Edit" />
                   <MenuItem onAction="#deleteAction" text="_Delete" />
                   <MenuItem mnemonicParsing="false" onAction="#factoryActions" text="Factory settings" />
-                  <MenuItem onAction="#exitAction" text="E_xit" />
+                  <MenuItem mnemonicParsing="false" onAction="#exitAction" text="Sign Out" />
               </items>
             </Menu>
           <Menu text="_Help">
