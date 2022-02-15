@@ -241,6 +241,9 @@ public class DAO {
         try {
             stmt.executeUpdate("DELETE FROM voters");
             stmt.executeUpdate("DELETE FROM cecmembers");
+            stmt.executeUpdate("DELETE FROM candidates");
+            stmt.executeUpdate("DELETE FROM politicalparties");
+            stmt.executeUpdate("DELETE FROM voting_sheets");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -257,6 +260,9 @@ public class DAO {
         try {
             stmt.executeUpdate("DELETE FROM voters");
             stmt.executeUpdate("DELETE FROM cecmembers");
+            stmt.executeUpdate("DELETE FROM candidates");
+            stmt.executeUpdate("DELETE FROM politicalparties");
+            stmt.executeUpdate("DELETE FROM voting_sheets");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -479,8 +485,8 @@ public class DAO {
                 int noviId = rs.getInt(1);
 
                 addVoteQuery.setInt(1, noviId);
-                addVoteQuery.setString(2, form.getParty());
-                addVoteQuery.setString(3, form.getCandidates().get(i).toString());
+                addVoteQuery.setString(2, form.getCandidates().get(i).toString());
+                addVoteQuery.setString(3, form.getParty());
                 addVoteQuery.execute();
             } catch (SQLException e) {
                 e.printStackTrace();

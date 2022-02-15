@@ -39,5 +39,11 @@ CREATE TABLE IF NOT EXISTS "voting_sheets" (
 	"candidate"	TEXT,
 	"political_party"	TEXT
 );
-INSERT INTO "PoliticalParties" VALUES (0,'No political party');
+INSERT INTO "CECMembers" VALUES (123,'cec','cec_first_name','cec_last_name');
+INSERT INTO "Candidates" VALUES (0,'Candidate1_FN','Candidate1_LN',0,1);
+INSERT INTO "Candidates" VALUES (1,'Candidate2_FN','Candidate2_LN',0,2);
+INSERT INTO "Candidates" VALUES (2,'Candidate3_FN','Candidate3_LN',0,1);
+INSERT INTO "PoliticalParties" VALUES (1,'Stranka A');
+INSERT INTO "PoliticalParties" VALUES (2,'Stranka B');
+INSERT INTO "Voters" VALUES ('voter','voter_FN','VOTER_LN','voter','123456','1.1.2000','Sarajevo','ETF','voter1@etf.unsa.ba','061 111 111',NULL);
 COMMIT;

@@ -19,14 +19,14 @@
    <header>
       <Pane prefHeight="177.0" prefWidth="447.0">
          <children>
-            <Label alignment="CENTER" layoutY="40.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="110.0" prefWidth="480.0" text="What do you want to do?" />
+            <Label alignment="CENTER" layoutY="40.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="97.0" prefWidth="480.0" text="  What do you want to do?&#10;" />
          </children>
       </Pane>
    </header>
    <expandableContent>
       <Pane prefHeight="10.0" prefWidth="474.0">
          <children>
-            <Label prefHeight="116.0" prefWidth="480.0" text="If you choose &quot;Delete all data&quot; all data from the database will be deleted. &#10;Only default Political Party will be inserted (&quot;No political party&quot;).&#10;If you choose &quot;Retur to test setting&quot; database will be in &quot;testing mode&quot;&#10;with some dummy data in it.">
+            <Label prefHeight="116.0" prefWidth="480.0" text="If you choose &quot;Delete all data&quot; all data from the database will be deleted. &#10;Only default Political Party will be inserted (&quot;No political party&quot;).&#10;If you choose &quot;Retur to test setting&quot; database will be in &quot;testing mode&quot;&#10;with some dummy data in it.&#10;Changes will appear after you log in again.">
                <padding>
                   <Insets left="3.0" right="1.0" />
                </padding></Label>
