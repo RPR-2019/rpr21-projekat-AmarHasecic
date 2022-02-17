@@ -80,11 +80,11 @@ public class CECController {
 
     public void startStopAction(ActionEvent actionEvent){
           if(tglBtn.isSelected()){
-              tglBtn.setStyle(" -fx-background-color: green;");
+              tglBtn.setStyle(" -fx-background-color: #7FFFD4;");
               start=true;
           }
           else{
-              tglBtn.setStyle(" -fx-background-color: #D3D3D3;");
+              tglBtn.setStyle(" -fx-background-color: #F0F8FF;");
               start = false;
           }
 

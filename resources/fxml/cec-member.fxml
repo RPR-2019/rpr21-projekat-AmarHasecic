@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="704.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="704.0" stylesheets="@../css/background.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <VBox prefHeight="457.0" prefWidth="157.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="57.0" prefWidth="157.0" text="Options">
+            <Label alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="157.0" text="Options">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -29,10 +29,13 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label prefHeight="90.0" prefWidth="411.0" text="Start elections: Voters will be able to login and vote. &#10;                         Admin can not log in.&#10;&#10;Stop elections: Admin can log in, voters can't.">
+                  <Label prefHeight="90.0" prefWidth="412.0" text="Start elections: Voters will be able to login and vote. &#10;                         Admin can not log in.&#10;&#10;Stop elections: Admin can log in, voters can't.">
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
                   </Label>
                   <ToggleButton fx:id="tglBtn" mnemonicParsing="false" onAction="#startStopAction" prefHeight="90.0" prefWidth="101.0" text="Start/Stop">
                      <HBox.margin>
@@ -50,12 +53,18 @@
                      <padding>
                         <Insets bottom="2.0" />
                      </padding>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
                   </Label>
                </children>
             </HBox>
             <HBox prefHeight="45.0" prefWidth="455.0">
                <children>
-                  <Label alignment="BOTTOM_CENTER" prefHeight="39.0" prefWidth="275.0" text="Candidates" />
+                  <Label alignment="BOTTOM_CENTER" prefHeight="39.0" prefWidth="275.0" text="Candidates">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Label>
                   <Label alignment="BOTTOM_CENTER" prefHeight="39.0" prefWidth="229.0" text="Political Paries" />
                </children></HBox>
             <HBox>
@@ -63,7 +72,10 @@
                   <Insets bottom="5.0" right="5.0" />
                </VBox.margin>
                <children>
-                  <ListView fx:id="listViewCandidates" prefHeight="195.0" prefWidth="262.0" />
+                  <ListView fx:id="listViewCandidates" prefHeight="195.0" prefWidth="262.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></ListView>
                   <ListView fx:id="listViewParties" prefHeight="195.0" prefWidth="254.0" />
                </children>
             </HBox>

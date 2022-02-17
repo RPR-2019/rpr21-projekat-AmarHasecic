@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
+<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/background.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@/css/background.css" />
+    </stylesheets>
+    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -45,7 +49,7 @@
 
               </rowConstraints>
                <children>
-                  <TextField fx:id="fieldUsername" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="44.0" prefWidth="220.0" promptText="Email or username" GridPane.rowIndex="1">
+                  <TextField fx:id="fieldUsername" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="220.0" promptText="Email or username" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="40.0" right="40.0" top="30.0" />
                      </GridPane.margin></TextField>
@@ -57,7 +61,7 @@
                         <Insets bottom="140.0" left="40.0" right="40.0" top="30.0" />
                      </GridPane.margin>
                   </PasswordField>
-                  <Button fx:id="login" defaultButton="true" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#loginAction" prefHeight="26.0" prefWidth="243.0" text="Log In" GridPane.rowIndex="3">
+                  <Button fx:id="login" defaultButton="true" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#loginAction" prefHeight="17.0" prefWidth="220.0" text="Log In" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets bottom="250.0" left="40.0" right="40.0" />
                      </GridPane.margin>

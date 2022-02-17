@@ -4,7 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
@@ -21,7 +23,8 @@ public class Main extends Application {
         ctrl = new MainController(false);
         loader.setController(ctrl);
         Parent root = loader.load();
-        stage.setScene(new Scene(root));
+        Scene scena = new Scene(root);
+        stage.setScene(scena);
         stage.toFront();
         stage.setTitle("Vote!");
         stage.show();
