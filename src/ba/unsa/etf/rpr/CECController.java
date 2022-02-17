@@ -41,7 +41,7 @@ public class CECController {
         listViewParties.setItems(parties);
         if(start==true) {
             tglBtn.setSelected(true);
-            tglBtn.setStyle(" -fx-background-color: green;");
+            tglBtn.setStyle(" -fx-background-color: #87CEFA;");
         }
     }
 
@@ -80,7 +80,7 @@ public class CECController {
 
     public void startStopAction(ActionEvent actionEvent){
           if(tglBtn.isSelected()){
-              tglBtn.setStyle(" -fx-background-color: #7FFFD4;");
+              tglBtn.setStyle(" -fx-background-color: #87CEFA;");
               start=true;
           }
           else{
