@@ -60,14 +60,23 @@ public class CECController {
         listViewCandidates.setItems(candidates);
     }
 
-    public void printReportAction(ActionEvent actionEvent){
+    public void printReportCandidatesAction(ActionEvent actionEvent){
             try {
-                new Report().showReport(model.getConn());
+                new Report().showReportCandidates(model.getConn());
             } catch (JRException e1) {
                 e1.printStackTrace();
             }
 
     }
+    public void printReportPartiesAction(ActionEvent actionEvent){
+        try {
+            new Report().showReportParties(model.getConn());
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }
+
+    }
+
 
     public void startStopAction(ActionEvent actionEvent){
           if(tglBtn.isSelected()){

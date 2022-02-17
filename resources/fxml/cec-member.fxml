@@ -18,7 +18,8 @@
                </VBox.margin>
             </Label>
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#refreshAction" prefHeight="39.0" prefWidth="157.0" stylesheets="@../css/button.css" text="Refresh" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printReportAction" prefHeight="40.0" prefWidth="157.0" stylesheets="@../css/button.css" text="Prints report &#10;(Candidates)" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printReportCandidatesAction" prefHeight="40.0" prefWidth="157.0" stylesheets="@../css/button.css" text=" Print report &#10;(Candidates)" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printReportPartiesAction" stylesheets="@../css/button.css" text="    Print report&#10;(Political parties)" />
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#exitAction" prefHeight="40.0" prefWidth="157.0" stylesheets="@../css/button.css" text="Sign Out" />
          </children>
       </VBox>
