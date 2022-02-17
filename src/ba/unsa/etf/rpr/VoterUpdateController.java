@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -50,30 +51,143 @@ public class VoterUpdateController {
 
         }
 
+        firstName.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                firstName.getStyleClass().removeAll("poljeNijeIspravno");
+                firstName.getStyleClass().add("poljeIspravno");
+            } else {
+                firstName.getStyleClass().removeAll("poljeIspravno");
+                firstName.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
+        lastName.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                lastName.getStyleClass().removeAll("poljeNijeIspravno");
+                lastName.getStyleClass().add("poljeIspravno");
+            } else {
+                lastName.getStyleClass().removeAll("poljeIspravno");
+                lastName.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
+        pass.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                pass.getStyleClass().removeAll("poljeNijeIspravno");
+                pass.getStyleClass().add("poljeIspravno");
+            } else {
+                pass.getStyleClass().removeAll("poljeIspravno");
+                pass.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
+        username.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                username.getStyleClass().removeAll("poljeNijeIspravno");
+                username.getStyleClass().add("poljeIspravno");
+            } else {
+                username.getStyleClass().removeAll("poljeIspravno");
+                username.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
+        jmbg.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                jmbg.getStyleClass().removeAll("poljeNijeIspravno");
+                jmbg.getStyleClass().add("poljeIspravno");
+            } else {
+                jmbg.getStyleClass().removeAll("poljeIspravno");
+                jmbg.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
+        date.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                date.getStyleClass().removeAll("poljeNijeIspravno");
+                date.getStyleClass().add("poljeIspravno");
+            } else {
+                date.getStyleClass().removeAll("poljeIspravno");
+                date.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
+        city.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                city.getStyleClass().removeAll("poljeNijeIspravno");
+                city.getStyleClass().add("poljeIspravno");
+            } else {
+                city.getStyleClass().removeAll("poljeIspravno");
+                city.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
+        adress.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                adress.getStyleClass().removeAll("poljeNijeIspravno");
+                adress.getStyleClass().add("poljeIspravno");
+            } else {
+                adress.getStyleClass().removeAll("poljeIspravno");
+                adress.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
+        email.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                email.getStyleClass().removeAll("poljeNijeIspravno");
+                email.getStyleClass().add("poljeIspravno");
+            } else {
+                email.getStyleClass().removeAll("poljeIspravno");
+                email.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
+        phone.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                phone.getStyleClass().removeAll("poljeNijeIspravno");
+                phone.getStyleClass().add("poljeIspravno");
+            } else {
+                phone.getStyleClass().removeAll("poljeIspravno");
+                phone.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
+
 
     }
 
     public void okAction(ActionEvent actionEvent){
 
-        if (voter == null) {
-            voter = new Voter();
-
+        if(firstName.getText().isBlank() || lastName.getText().isBlank() || username.getText().isBlank() || adress.getText().isBlank() ||
+         city.getText().isBlank() ||date.getText().isBlank() || jmbg.getText().isBlank() || email.getText().isBlank() || phone.getText().isBlank() ||
+        pass.getText().isBlank())
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Field empty");
+            alert.setContentText("You have to fill every field in this form");
+            alert.showAndWait();
         }
+        else {
 
-        voter.setFirstName(firstName.getText());
-        voter.setLastName(lastName.getText());
-        voter.setAdress(adress.getText());
-        voter.setCity(city.getText());
-        voter.setDate(date.getText());
-        voter.setJmbg(jmbg.getText());
-        voter.setEmail(email.getText());
-        voter.setPhone(phone.getText());
-        voter.setPassword(pass.getText());
-        voter.setUsername(username.getText());
+            if (voter == null) {
+                voter = new Voter();
+
+            }
+
+            voter.setFirstName(firstName.getText());
+            voter.setLastName(lastName.getText());
+            voter.setAdress(adress.getText());
+            voter.setCity(city.getText());
+            voter.setDate(date.getText());
+            voter.setJmbg(jmbg.getText());
+            voter.setEmail(email.getText());
+            voter.setPhone(phone.getText());
+            voter.setPassword(pass.getText());
+            voter.setUsername(username.getText());
 
 
-        Stage stage = (Stage) username.getScene().getWindow();
-        stage.close();
+            Stage stage = (Stage) username.getScene().getWindow();
+            stage.close();
+        }
 
     }
 
