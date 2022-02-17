@@ -66,6 +66,25 @@ public class VotingPage2Controller {
         voter.setBadge("/jpg/IVotedSticker.jpg");
         model.setBadge(voter);
 
+        Stage stage = new Stage();
+        Parent root = null;
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/voterMainPage.fxml"));
+        VoterController ctrl = new VoterController(voter);
+        loader.setController(ctrl);
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Welcome page");
+        stage.setResizable(false);
+        stage.show();
+
+
         Stage currentStage = (Stage) listViewCandidates.getScene().getWindow();
         currentStage.close();
 
