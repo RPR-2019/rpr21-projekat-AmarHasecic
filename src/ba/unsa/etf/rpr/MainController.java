@@ -73,7 +73,7 @@ public class MainController{
             Voter voter = null;
 
             for (int i = 0; i < listVoters.size(); i++) {
-                System.out.println(listVoters.get(i).getBadge());
+
                 if (fieldUsername.getText().equals(listVoters.get(i).getEmail()) && fieldPassword.getText().equals(listVoters.get(i).getPassword())) {
                     flagVoter = true;
                     voter = listVoters.get(i);

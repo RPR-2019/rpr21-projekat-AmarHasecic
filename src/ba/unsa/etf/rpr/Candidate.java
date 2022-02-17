@@ -14,7 +14,6 @@ public class Candidate {
 
     public Candidate() {
     }
-
     public int getId() {
         return id;
     }
