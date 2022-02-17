@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -31,19 +32,37 @@ public class PartyUpdateController {
             name.setText(party.getName());
 
         }
+        name.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                name.getStyleClass().removeAll("poljeNijeIspravno");
+                name.getStyleClass().add("poljeIspravno");
+            } else {
+                name.getStyleClass().removeAll("poljeIspravno");
+                name.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
 
     }
 
     public void okAction(ActionEvent actionEvent){
-        if (party == null) {
-            party = new PoliticalParty();
-
+        if(name.getText().isBlank())
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Field empty");
+            alert.setContentText("You have to fill every field in this form");
+            alert.showAndWait();
         }
-        party.setName(name.getText());
+        else {
+            if (party == null) {
+                party = new PoliticalParty();
+
+            }
+            party.setName(name.getText());
 
 
-        Stage stage = (Stage) name.getScene().getWindow();
-        stage.close();
+            Stage stage = (Stage) name.getScene().getWindow();
+            stage.close();
+        }
 
     }
 
