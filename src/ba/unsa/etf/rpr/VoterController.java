@@ -34,7 +34,7 @@ public class VoterController {
         if(voter.getBadge()!=null)
         {
 
-            Image image = new Image("/jpg/IVotedSticker.jpg");
+            Image image = new Image("/img/IVotedSticker.jpg");
             imgViewSticker.setImage(image);
 
             btnStart.setDisable(true);

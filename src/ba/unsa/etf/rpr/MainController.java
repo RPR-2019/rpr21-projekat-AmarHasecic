@@ -55,6 +55,7 @@ public class MainController{
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.setMaximized(true);
+                stage.setTitle("Administrator");
                 stage.show();
 
                 Stage currentStage = (Stage) fieldUsername.getScene().getWindow();

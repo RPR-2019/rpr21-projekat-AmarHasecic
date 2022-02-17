@@ -63,7 +63,7 @@ public class VotingPage2Controller {
         }
 
         model.addVote(new VotingForm(0,party.getName(), selectedCandidates));
-        voter.setBadge("/jpg/IVotedSticker.jpg");
+        voter.setBadge("/img/IVotedSticker.jpg");
         model.setBadge(voter);
 
         Stage stage = new Stage();
