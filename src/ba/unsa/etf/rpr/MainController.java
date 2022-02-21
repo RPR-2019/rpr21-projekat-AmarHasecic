@@ -70,6 +70,7 @@ public class MainController{
                 else{
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Can't enter now.");
+                    alert.setHeaderText("Sorry...");
                     alert.setContentText("Elections started. Admin entry denied.");
                     alert.showAndWait();
                 }
@@ -121,6 +122,7 @@ public class MainController{
                 else{
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Can't vote now.");
+                    alert.setHeaderText("Sorry...");
                     alert.setContentText("You will be able to vote when elections start ");
                     alert.showAndWait();
                 }
