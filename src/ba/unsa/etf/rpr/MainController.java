@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -23,6 +24,7 @@ public class MainController{
     public ObservableList<CECMember> cecMembers;
     private boolean start;
     public Button btnGithub;
+    public Label lblMessage;
 
     public MainController(boolean start) {
         model = DAO.getInstance();
@@ -40,8 +42,9 @@ public class MainController{
 
     public void loginAction(ActionEvent actionEvent) {
 
-
+     boolean flagAdmin = false;
             if (fieldUsername.getText().equals("admin") && fieldPassword.getText().equals("admin")) {
+                flagAdmin = true;
                 if(start==false) {
                 Stage stage = new Stage();
                 Parent root = null;
@@ -161,6 +164,10 @@ public class MainController{
 
             Stage currentStage = (Stage) fieldUsername.getScene().getWindow();
             currentStage.close();
+        }
+
+        if(!flagVoter && !flagCec && !flagAdmin){
+            lblMessage.setText("The username or password you\n entered doesn't belong to\n an account.");
         }
 
     }
