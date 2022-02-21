@@ -155,6 +155,18 @@ public class VoterUpdateController {
 
     }
 
+    boolean checkPassword(String password) throws PasswordFormatException {
+        if (password == null) {
+            throw new PasswordFormatException("Password must contain at least one letter");
+        }
+        try {
+            double d = Integer.parseInt(password);
+        } catch (NumberFormatException nfe) {
+            return true;
+        }
+        throw new PasswordFormatException("Password must contain at least one letter");
+    }
+
     public void okAction(ActionEvent actionEvent){
 
         if(firstName.getText().isBlank() || lastName.getText().isBlank() || username.getText().isBlank() || adress.getText().isBlank() ||
@@ -184,14 +196,24 @@ public class VoterUpdateController {
             voter.setPassword(pass.getText());
             voter.setUsername(username.getText());
 
+            try {
+                if(checkPassword(pass.getText())) {
+                    Stage stage = (Stage) username.getScene().getWindow();
+                    stage.close();
+                }
+            } catch (PasswordFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Password format not acceptable");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
 
-            Stage stage = (Stage) username.getScene().getWindow();
-            stage.close();
+            }
         }
 
     }
 
     public void cancelAction(ActionEvent actionEvent){
+        voter=null;
         Stage currentStage = (Stage) username.getScene().getWindow();
         currentStage.close();
 

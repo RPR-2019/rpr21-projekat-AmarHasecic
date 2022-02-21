@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.sqlite.SQLiteException;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -106,6 +107,7 @@ public class AdminController {
 
     }
 
+
     public void addCecAction(ActionEvent actionEvent) {
 
         Stage stage = new Stage();
@@ -155,14 +157,13 @@ public class AdminController {
         stage.setResizable(false);
         stage.show();
 
+
         stage.setOnHiding( event -> {
             Voter voter = ctrl.getVoter();
             if (voter != null) {
-                model.addVoter(voter);
-                listVoters.setAll(model.voters());
-            }
-
-        } );
+                    model.addVoter(voter);
+                    listVoters.setAll(model.voters());
+        } });
 
     }
 

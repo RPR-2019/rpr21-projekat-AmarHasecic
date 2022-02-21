@@ -2,11 +2,14 @@ package ba.unsa.etf.rpr;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class DAO {
@@ -359,7 +362,7 @@ public class DAO {
 
             addVoterQuery.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+           e.printStackTrace();
         }
     }
 
