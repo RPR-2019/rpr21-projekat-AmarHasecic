@@ -7,7 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,8 +22,7 @@ public class MainController{
     public ObservableList<Voter> listVoters;
     public ObservableList<CECMember> cecMembers;
     private boolean start;
-
-
+    public Button btnGithub;
 
     public MainController(boolean start) {
         model = DAO.getInstance();
@@ -32,6 +33,8 @@ public class MainController{
 
     public void initialize() {
 
+        ImageView imageView = new ImageView(getClass().getResource("/img/github.png").toExternalForm());
+        btnGithub.setGraphic(imageView);
     }
 
 
@@ -160,6 +163,18 @@ public class MainController{
             currentStage.close();
         }
 
+    }
+
+    public static void openWebpage(String url) {
+        try {
+            new ProcessBuilder("x-www-browser", url).start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void githubAction(ActionEvent actionEvent){
+        openWebpage("https://github.com/RPR-2019/rpr21-projekat-AmarHasecic");
     }
 
 }

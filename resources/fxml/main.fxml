@@ -76,4 +76,11 @@
          </center>
       </BorderPane>
    </center>
+   <bottom>
+      <Button fx:id="btnGithub" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#githubAction" prefHeight="10.0" prefWidth="10.0" stylesheets="@../css/btnGithub.css" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="5.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
 </BorderPane>
